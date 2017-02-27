@@ -10,6 +10,9 @@ buildscript {
 
         // replace with the current version of the android-apt plugin
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
+        // retro lambda
+        classpath 'me.tatarka:gradle-retrolambda:3.5.0'
     }
 }
 
