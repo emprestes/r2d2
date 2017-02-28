@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.VideoView;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Touch;
 import org.androidannotations.annotations.ViewById;
@@ -83,7 +84,7 @@ public class SplashActivity extends AppCompatActivity {
         initIntro();
     }
 
-    @Touch(R.id.enter)
+    @Click(R.id.enter)
     void button() {
         if (AUTO_HIDE) {
             delayedHide(AUTO_HIDE_DELAY_MILLIS);
