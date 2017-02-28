@@ -2,8 +2,14 @@
     <string name="app_name">R2D2</string>
 
     <string name="r2d2_label">R2D2 apresenta…</string>
+    <string name="starwars_label">Star Wars: R2D2</string>
     <string name="dummy_button">Meus personagens</string>
     <string name="character_list">Meus Personagens</string>
     <string name="character_new">Conhecer personagem (QRCode)</string>
     <string name="list">Listar</string>
+    <string name="the_force">May the force be with you…</string>
+    <string name="exit_press_back">Para sair pressione voltar.</string>
+    <string name="thanks">Obrigado por usar este APP :D</string>
+    <string name="enjoy">Aprovite esse final :)</string>
+    <string name="byebye">Bye bye…</string>
 </resources>

@@ -106,14 +106,15 @@ public class SplashActivity extends AppCompatActivity {
     private void initIntro() {
         int id;
 
-        id = (int) (1 + Math.random() * 7);
-        id = id == 1 ? R.raw.star_wars_1 : id;
-        id = id == 2 ? R.raw.star_wars_2 : id;
-        id = id == 3 ? R.raw.star_wars_3 : id;
-        id = id == 4 ? R.raw.star_wars_4 : id;
-        id = id == 5 ? R.raw.star_wars_5 : id;
-        id = id == 6 ? R.raw.star_wars_6 : id;
-        id = id == 7 ? R.raw.star_wars_7 : id;
+        id = (int) (1 + Math.random() * 8);
+        id = id == 1 ? R.raw.sw_intro_1 : id;
+        id = id == 2 ? R.raw.sw_intro_2 : id;
+        id = id == 3 ? R.raw.sw_intro_3 : id;
+        id = id == 4 ? R.raw.sw_intro_4 : id;
+        id = id == 5 ? R.raw.sw_intro_5 : id;
+        id = id == 6 ? R.raw.sw_intro_6 : id;
+        id = id == 7 ? R.raw.sw_intro_71 : id;
+        id = id == 8 ? R.raw.sw_intro_72 : id;
 
         mContentView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + id));
         mContentView.start();
@@ -162,5 +163,11 @@ public class SplashActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(Controllers.R2D2.ACTION);
+        finish();
     }
 }
