@@ -1,17 +1,20 @@
 package br.com.tradeforce.starwars.r2d2.controller;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.VideoView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Touch;
 import org.androidannotations.annotations.ViewById;
 
 import br.com.tradeforce.starwars.r2d2.R;
+import br.com.tradeforce.starwars.r2d2.support.v7.app.AppCompatActivity;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -36,22 +39,9 @@ public class SplashActivity extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 300;
-
     private final Handler mHideHandler = new Handler();
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = (view, motionEvent) -> {
-        if (AUTO_HIDE) {
-            delayedHide(AUTO_HIDE_DELAY_MILLIS);
-        }
-
-        return false;
-    };
     @ViewById(R.id.fullscreen_content)
-    View mContentView;
+    VideoView mContentView;
     private final Runnable mHidePart2Runnable = () -> {
         // Delayed removal of status and navigation bar
 
@@ -75,7 +65,7 @@ public class SplashActivity extends AppCompatActivity {
         }
         mControlsView.setVisibility(View.VISIBLE);
     };
-    private boolean mVisible;
+    private boolean mVisible, isClicked;
     private final Runnable mHideRunnable = this::hide;
 
     @AfterViews
@@ -84,13 +74,48 @@ public class SplashActivity extends AppCompatActivity {
 
         setTitle(R.string.r2d2_label);
 
-        // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(v -> toggle());
+        mContentView.setOnCompletionListener(mp -> {
+            if (!isClicked && !mp.isPlaying()) {
+                startActivity(Controllers.R2D2.ACTION);
+            }
+        });
 
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        initIntro();
+    }
+
+    @Touch(R.id.enter)
+    void button() {
+        if (AUTO_HIDE) {
+            delayedHide(AUTO_HIDE_DELAY_MILLIS);
+        }
+
+        isClicked = true;
+        startActivity(Controllers.R2D2.ACTION);
+    }
+
+    @Touch(R.id.fullscreen_content)
+    void toggle() {
+        if (mVisible) {
+            hide();
+        } else {
+            show();
+        }
+    }
+
+    private void initIntro() {
+        int id;
+
+        id = (int) (1 + Math.random() * 7);
+        id = id == 1 ? R.raw.star_wars_1 : id;
+        id = id == 2 ? R.raw.star_wars_2 : id;
+        id = id == 3 ? R.raw.star_wars_3 : id;
+        id = id == 4 ? R.raw.star_wars_4 : id;
+        id = id == 5 ? R.raw.star_wars_5 : id;
+        id = id == 6 ? R.raw.star_wars_6 : id;
+        id = id == 7 ? R.raw.star_wars_7 : id;
+
+        mContentView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + id));
+        mContentView.start();
     }
 
     @Override
@@ -100,15 +125,7 @@ public class SplashActivity extends AppCompatActivity {
         // Trigger the initial hide() shortly after the activity has been
         // created, to briefly hint to the user that UI controls
         // are available.
-        delayedHide(100);
-    }
-
-    private void toggle() {
-        if (mVisible) {
-            hide();
-        } else {
-            show();
-        }
+        delayedHide(300);
     }
 
     private void hide() {

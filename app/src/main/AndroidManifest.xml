@@ -19,5 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".controller.R2D2Activity_"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="starwars.intent.action.R2D2" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

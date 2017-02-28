@@ -3,4 +3,7 @@
 
     <string name="r2d2_label">R2D2 apresenta…</string>
     <string name="dummy_button">Meus personagens</string>
+    <string name="character_list">Meus Personagens</string>
+    <string name="character_new">Conhecer personagem (QRCode)</string>
+    <string name="list">Listar</string>
 </resources>
