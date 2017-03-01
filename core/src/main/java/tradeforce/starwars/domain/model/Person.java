@@ -250,6 +250,11 @@ public class Person implements Domain<Person>, Serializable {
     }
 
     @Override
+    public int compareTo(Person o) {
+        return getUrl().compareTo(o.getUrl());
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         name = null;
         height = null;
