@@ -45,120 +45,135 @@ public class Vehicle implements Domain<Vehicle>, Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public Vehicle setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public Vehicle setModel(String model) {
         this.model = model;
+        return this;
     }
 
     public String getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
+    public Vehicle setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+        return this;
     }
 
     public String getCost_in_credits() {
         return cost_in_credits;
     }
 
-    public void setCost_in_credits(String cost_in_credits) {
+    public Vehicle setCost_in_credits(String cost_in_credits) {
         this.cost_in_credits = cost_in_credits;
+        return this;
     }
 
     public Double getLength() {
         return length;
     }
 
-    public void setLength(Double length) {
+    public Vehicle setLength(Double length) {
         this.length = length;
+        return this;
     }
 
     public Integer getMax_atmosphering_speed() {
         return max_atmosphering_speed;
     }
 
-    public void setMax_atmosphering_speed(Integer max_atmosphering_speed) {
+    public Vehicle setMax_atmosphering_speed(Integer max_atmosphering_speed) {
         this.max_atmosphering_speed = max_atmosphering_speed;
+        return this;
     }
 
     public Integer getCrew() {
         return crew;
     }
 
-    public void setCrew(Integer crew) {
+    public Vehicle setCrew(Integer crew) {
         this.crew = crew;
+        return this;
     }
 
     public Integer getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(Integer passengers) {
+    public Vehicle setPassengers(Integer passengers) {
         this.passengers = passengers;
+        return this;
     }
 
     public Integer getCargo_capacity() {
         return cargo_capacity;
     }
 
-    public void setCargo_capacity(Integer cargo_capacity) {
+    public Vehicle setCargo_capacity(Integer cargo_capacity) {
         this.cargo_capacity = cargo_capacity;
+        return this;
     }
 
     public String getConsumables() {
         return consumables;
     }
 
-    public void setConsumables(String consumables) {
+    public Vehicle setConsumables(String consumables) {
         this.consumables = consumables;
+        return this;
     }
 
     public String getVehicle_class() {
         return vehicle_class;
     }
 
-    public void setVehicle_class(String vehicle_class) {
+    public Vehicle setVehicle_class(String vehicle_class) {
         this.vehicle_class = vehicle_class;
+        return this;
     }
 
     public List<Person> getPilots() {
         return pilots;
     }
 
-    public void setPilots(List<Person> pilots) {
+    public Vehicle setPilots(List<Person> pilots) {
         this.pilots = pilots;
+        return this;
     }
 
     public List<Film> getFilms() {
         return films;
     }
 
-    public void setFilms(List<Film> films) {
+    public Vehicle setFilms(List<Film> films) {
         this.films = films;
+        return this;
     }
 
     public String getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public Vehicle setCreated(String created) {
         this.created = created;
+        return this;
     }
 
     public String getEdited() {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    public Vehicle setEdited(String edited) {
         this.edited = edited;
+        return this;
     }
 
     @Override
