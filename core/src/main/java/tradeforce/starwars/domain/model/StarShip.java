@@ -278,6 +278,11 @@ public class StarShip implements Domain<StarShip>, Serializable {
     }
 
     @Override
+    public int compareTo(StarShip o) {
+        return getUrl().compareTo(o.getUrl());
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         name = null;
         model = null;
