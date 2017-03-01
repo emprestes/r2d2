@@ -236,6 +236,11 @@ public class Species implements Domain<Species>, Serializable {
     }
 
     @Override
+    public int compareTo(Species o) {
+        return getUrl().compareTo(o.getUrl());
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         name = null;
         classification = null;
