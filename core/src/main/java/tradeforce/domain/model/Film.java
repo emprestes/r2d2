@@ -1,5 +1,7 @@
 package tradeforce.domain.model;
 
+import com.google.common.base.MoreObjects;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -143,5 +145,101 @@ public class Film implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Film)) return false;
+
+        Film film = (Film) o;
+
+        if (getTitle() != null ? !getTitle().equals(film.getTitle()) : film.getTitle() != null)
+            return false;
+        if (getEpisode_id() != null ? !getEpisode_id().equals(film.getEpisode_id()) : film.getEpisode_id() != null)
+            return false;
+        if (getOpening_crawl() != null ? !getOpening_crawl().equals(film.getOpening_crawl()) : film.getOpening_crawl() != null)
+            return false;
+        if (getDirector() != null ? !getDirector().equals(film.getDirector()) : film.getDirector() != null)
+            return false;
+        if (getProducer() != null ? !getProducer().equals(film.getProducer()) : film.getProducer() != null)
+            return false;
+        if (getRelease_date() != null ? !getRelease_date().equals(film.getRelease_date()) : film.getRelease_date() != null)
+            return false;
+        if (getCharacters() != null ? !getCharacters().equals(film.getCharacters()) : film.getCharacters() != null)
+            return false;
+        if (getPlanets() != null ? !getPlanets().equals(film.getPlanets()) : film.getPlanets() != null)
+            return false;
+        if (getStarships() != null ? !getStarships().equals(film.getStarships()) : film.getStarships() != null)
+            return false;
+        if (getVehicles() != null ? !getVehicles().equals(film.getVehicles()) : film.getVehicles() != null)
+            return false;
+        if (getSpecies() != null ? !getSpecies().equals(film.getSpecies()) : film.getSpecies() != null)
+            return false;
+        if (getCreated() != null ? !getCreated().equals(film.getCreated()) : film.getCreated() != null)
+            return false;
+        if (getEdited() != null ? !getEdited().equals(film.getEdited()) : film.getEdited() != null)
+            return false;
+        return getUrl() != null ? getUrl().equals(film.getUrl()) : film.getUrl() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTitle() != null ? getTitle().hashCode() : 0;
+        result = 31 * result + (getEpisode_id() != null ? getEpisode_id().hashCode() : 0);
+        result = 31 * result + (getOpening_crawl() != null ? getOpening_crawl().hashCode() : 0);
+        result = 31 * result + (getDirector() != null ? getDirector().hashCode() : 0);
+        result = 31 * result + (getProducer() != null ? getProducer().hashCode() : 0);
+        result = 31 * result + (getRelease_date() != null ? getRelease_date().hashCode() : 0);
+        result = 31 * result + (getCharacters() != null ? getCharacters().hashCode() : 0);
+        result = 31 * result + (getPlanets() != null ? getPlanets().hashCode() : 0);
+        result = 31 * result + (getStarships() != null ? getStarships().hashCode() : 0);
+        result = 31 * result + (getVehicles() != null ? getVehicles().hashCode() : 0);
+        result = 31 * result + (getSpecies() != null ? getSpecies().hashCode() : 0);
+        result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
+        result = 31 * result + (getEdited() != null ? getEdited().hashCode() : 0);
+        result = 31 * result + (getUrl() != null ? getUrl().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        title = null;
+        episode_id = null;
+        opening_crawl = null;
+        director = null;
+        producer = null;
+        release_date = null;
+        characters = null;
+        planets = null;
+        starships = null;
+        vehicles = null;
+        species = null;
+        created = null;
+        edited = null;
+        url = null;
+
+        super.finalize();
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("title", title)
+                .add("episode_id", episode_id)
+                .add("opening_crawl", opening_crawl)
+                .add("director", director)
+                .add("producer", producer)
+                .add("release_date", release_date)
+                .add("characters", characters)
+                .add("planets", planets)
+                .add("starships", starships)
+                .add("vehicles", vehicles)
+                .add("species", species)
+                .add("created", created)
+                .add("edited", edited)
+                .add("url", url)
+                .toString();
     }
 }

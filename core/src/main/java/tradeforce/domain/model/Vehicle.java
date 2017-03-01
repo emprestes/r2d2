@@ -1,5 +1,7 @@
 package tradeforce.domain.model;
 
+import com.google.common.base.MoreObjects;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -163,5 +165,111 @@ public class Vehicle implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vehicle)) return false;
+
+        Vehicle vehicle = (Vehicle) o;
+
+        if (getName() != null ? !getName().equals(vehicle.getName()) : vehicle.getName() != null)
+            return false;
+        if (getModel() != null ? !getModel().equals(vehicle.getModel()) : vehicle.getModel() != null)
+            return false;
+        if (getManufacturer() != null ? !getManufacturer().equals(vehicle.getManufacturer()) : vehicle.getManufacturer() != null)
+            return false;
+        if (getCost_in_credits() != null ? !getCost_in_credits().equals(vehicle.getCost_in_credits()) : vehicle.getCost_in_credits() != null)
+            return false;
+        if (getLength() != null ? !getLength().equals(vehicle.getLength()) : vehicle.getLength() != null)
+            return false;
+        if (getMax_atmosphering_speed() != null ? !getMax_atmosphering_speed().equals(vehicle.getMax_atmosphering_speed()) : vehicle.getMax_atmosphering_speed() != null)
+            return false;
+        if (getCrew() != null ? !getCrew().equals(vehicle.getCrew()) : vehicle.getCrew() != null)
+            return false;
+        if (getPassengers() != null ? !getPassengers().equals(vehicle.getPassengers()) : vehicle.getPassengers() != null)
+            return false;
+        if (getCargo_capacity() != null ? !getCargo_capacity().equals(vehicle.getCargo_capacity()) : vehicle.getCargo_capacity() != null)
+            return false;
+        if (getConsumables() != null ? !getConsumables().equals(vehicle.getConsumables()) : vehicle.getConsumables() != null)
+            return false;
+        if (getVehicle_class() != null ? !getVehicle_class().equals(vehicle.getVehicle_class()) : vehicle.getVehicle_class() != null)
+            return false;
+        if (getPilots() != null ? !getPilots().equals(vehicle.getPilots()) : vehicle.getPilots() != null)
+            return false;
+        if (getFilms() != null ? !getFilms().equals(vehicle.getFilms()) : vehicle.getFilms() != null)
+            return false;
+        if (getCreated() != null ? !getCreated().equals(vehicle.getCreated()) : vehicle.getCreated() != null)
+            return false;
+        if (getEdited() != null ? !getEdited().equals(vehicle.getEdited()) : vehicle.getEdited() != null)
+            return false;
+        return getUrl() != null ? getUrl().equals(vehicle.getUrl()) : vehicle.getUrl() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getModel() != null ? getModel().hashCode() : 0);
+        result = 31 * result + (getManufacturer() != null ? getManufacturer().hashCode() : 0);
+        result = 31 * result + (getCost_in_credits() != null ? getCost_in_credits().hashCode() : 0);
+        result = 31 * result + (getLength() != null ? getLength().hashCode() : 0);
+        result = 31 * result + (getMax_atmosphering_speed() != null ? getMax_atmosphering_speed().hashCode() : 0);
+        result = 31 * result + (getCrew() != null ? getCrew().hashCode() : 0);
+        result = 31 * result + (getPassengers() != null ? getPassengers().hashCode() : 0);
+        result = 31 * result + (getCargo_capacity() != null ? getCargo_capacity().hashCode() : 0);
+        result = 31 * result + (getConsumables() != null ? getConsumables().hashCode() : 0);
+        result = 31 * result + (getVehicle_class() != null ? getVehicle_class().hashCode() : 0);
+        result = 31 * result + (getPilots() != null ? getPilots().hashCode() : 0);
+        result = 31 * result + (getFilms() != null ? getFilms().hashCode() : 0);
+        result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
+        result = 31 * result + (getEdited() != null ? getEdited().hashCode() : 0);
+        result = 31 * result + (getUrl() != null ? getUrl().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        name = null;
+        model = null;
+        manufacturer = null;
+        cost_in_credits = null;
+        length = null;
+        max_atmosphering_speed = null;
+        crew = null;
+        passengers = null;
+        cargo_capacity = null;
+        consumables = null;
+        vehicle_class = null;
+        pilots = null;
+        films = null;
+        created = null;
+        edited = null;
+        url = null;
+
+        super.finalize();
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("name", name)
+                .add("model", model)
+                .add("manufacturer", manufacturer)
+                .add("cost_in_credits", cost_in_credits)
+                .add("length", length)
+                .add("max_atmosphering_speed", max_atmosphering_speed)
+                .add("crew", crew)
+                .add("passengers", passengers)
+                .add("cargo_capacity", cargo_capacity)
+                .add("consumables", consumables)
+                .add("vehicle_class", vehicle_class)
+                .add("pilots", pilots)
+                .add("films", films)
+                .add("created", created)
+                .add("edited", edited)
+                .add("url", url)
+                .toString();
     }
 }
