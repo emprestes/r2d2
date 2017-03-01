@@ -41,104 +41,117 @@ public class Planet implements Domain<Planet>, Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public Planet setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getRotation_period() {
         return rotation_period;
     }
 
-    public void setRotation_period(String rotation_period) {
+    public Planet setRotation_period(String rotation_period) {
         this.rotation_period = rotation_period;
+        return this;
     }
 
     public String getOrbital_period() {
         return orbital_period;
     }
 
-    public void setOrbital_period(String orbital_period) {
+    public Planet setOrbital_period(String orbital_period) {
         this.orbital_period = orbital_period;
+        return this;
     }
 
     public String getDiameter() {
         return diameter;
     }
 
-    public void setDiameter(String diameter) {
+    public Planet setDiameter(String diameter) {
         this.diameter = diameter;
+        return this;
     }
 
     public String getClimate() {
         return climate;
     }
 
-    public void setClimate(String climate) {
+    public Planet setClimate(String climate) {
         this.climate = climate;
+        return this;
     }
 
     public String getGravity() {
         return gravity;
     }
 
-    public void setGravity(String gravity) {
+    public Planet setGravity(String gravity) {
         this.gravity = gravity;
+        return this;
     }
 
     public String getTerrain() {
         return terrain;
     }
 
-    public void setTerrain(String terrain) {
+    public Planet setTerrain(String terrain) {
         this.terrain = terrain;
+        return this;
     }
 
     public String getSurface_water() {
         return surface_water;
     }
 
-    public void setSurface_water(String surface_water) {
+    public Planet setSurface_water(String surface_water) {
         this.surface_water = surface_water;
+        return this;
     }
 
     public String getPopulation() {
         return population;
     }
 
-    public void setPopulation(String population) {
+    public Planet setPopulation(String population) {
         this.population = population;
+        return this;
     }
 
     public List<Person> getResidents() {
         return residents;
     }
 
-    public void setResidents(List<Person> residents) {
+    public Planet setResidents(List<Person> residents) {
         this.residents = residents;
+        return this;
     }
 
     public List<Film> getFilms() {
         return films;
     }
 
-    public void setFilms(List<Film> films) {
+    public Planet setFilms(List<Film> films) {
         this.films = films;
+        return this;
     }
 
     public String getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public Planet setCreated(String created) {
         this.created = created;
+        return this;
     }
 
     public String getEdited() {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    public Planet setEdited(String edited) {
         this.edited = edited;
+        return this;
     }
 
     @Override
