@@ -7,7 +7,7 @@ import java.util.List;
 
 import tradeforce.starwars.domain.Domain;
 
-public class Planet implements Domain, Serializable {
+public class Planet implements Domain<Planet>, Serializable {
 
     private String name;
 
@@ -147,8 +147,9 @@ public class Planet implements Domain, Serializable {
     }
 
     @Override
-    public void setUrl(String url) {
+    public Planet setUrl(String url) {
         this.url = url;
+        return this;
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 import tradeforce.starwars.domain.Domain;
 
-public class Film implements Domain, Serializable {
+public class Film implements Domain<Film>, Serializable {
 
     private String title;
 
@@ -41,104 +41,117 @@ public class Film implements Domain, Serializable {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Film setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public Integer getEpisode_id() {
         return episode_id;
     }
 
-    public void setEpisode_id(Integer episode_id) {
+    public Film setEpisode_id(Integer episode_id) {
         this.episode_id = episode_id;
+        return this;
     }
 
     public String getOpening_crawl() {
         return opening_crawl;
     }
 
-    public void setOpening_crawl(String opening_crawl) {
+    public Film setOpening_crawl(String opening_crawl) {
         this.opening_crawl = opening_crawl;
+        return this;
     }
 
     public String getDirector() {
         return director;
     }
 
-    public void setDirector(String director) {
+    public Film setDirector(String director) {
         this.director = director;
+        return this;
     }
 
     public String getProducer() {
         return producer;
     }
 
-    public void setProducer(String producer) {
+    public Film setProducer(String producer) {
         this.producer = producer;
+        return this;
     }
 
     public String getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(String release_date) {
+    public Film setRelease_date(String release_date) {
         this.release_date = release_date;
+        return this;
     }
 
     public List<Person> getCharacters() {
         return characters;
     }
 
-    public void setCharacters(List<Person> characters) {
+    public Film setCharacters(List<Person> characters) {
         this.characters = characters;
+        return this;
     }
 
     public List<Planet> getPlanets() {
         return planets;
     }
 
-    public void setPlanets(List<Planet> planets) {
+    public Film setPlanets(List<Planet> planets) {
         this.planets = planets;
+        return this;
     }
 
     public List<StarShip> getStarships() {
         return starships;
     }
 
-    public void setStarships(List<StarShip> starships) {
+    public Film setStarships(List<StarShip> starships) {
         this.starships = starships;
+        return this;
     }
 
     public List<Vehicle> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(List<Vehicle> vehicles) {
+    public Film setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
+        return this;
     }
 
     public List<Species> getSpecies() {
         return species;
     }
 
-    public void setSpecies(List<Species> species) {
+    public Film setSpecies(List<Species> species) {
         this.species = species;
+        return this;
     }
 
     public String getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public Film setCreated(String created) {
         this.created = created;
+        return this;
     }
 
     public String getEdited() {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    public Film setEdited(String edited) {
         this.edited = edited;
+        return this;
     }
 
     @Override
@@ -147,8 +160,9 @@ public class Film implements Domain, Serializable {
     }
 
     @Override
-    public void setUrl(String url) {
+    public Film setUrl(String url) {
         this.url = url;
+        return this;
     }
 
     @Override

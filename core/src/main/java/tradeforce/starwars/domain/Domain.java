@@ -1,8 +1,8 @@
 package tradeforce.starwars.domain;
 
-public interface Domain {
+public interface Domain<D> {
 
     String getUrl();
 
-    void setUrl(String url);
+    D setUrl(String url);
 }
