@@ -222,6 +222,11 @@ public class Film implements Domain<Film>, Serializable {
     }
 
     @Override
+    public int compareTo(Film o) {
+        return getUrl().compareTo(o.getUrl());
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         title = null;
         episode_id = null;

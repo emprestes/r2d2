@@ -1,6 +1,6 @@
 package tradeforce.starwars.domain;
 
-public interface Domain<D> {
+public interface Domain<D> extends Comparable<D> {
 
     String getUrl();
 
