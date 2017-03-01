@@ -222,6 +222,11 @@ public class Planet implements Domain<Planet>, Serializable {
     }
 
     @Override
+    public int compareTo(Planet o) {
+        return getUrl().compareTo(o.getUrl());
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         name = null;
         rotation_period = null;
