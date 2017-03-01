@@ -250,6 +250,11 @@ public class Vehicle implements Domain<Vehicle>, Serializable {
     }
 
     @Override
+    public int compareTo(Vehicle o) {
+        return getUrl().compareTo(o.getUrl());
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         name = null;
         model = null;
