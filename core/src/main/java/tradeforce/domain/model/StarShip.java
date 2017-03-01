@@ -1,5 +1,7 @@
 package tradeforce.domain.model;
 
-public class StarShip {
+import java.io.Serializable;
+
+public class StarShip implements Serializable {
 
 }

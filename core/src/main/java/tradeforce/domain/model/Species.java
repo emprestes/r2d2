@@ -1,5 +1,7 @@
 package tradeforce.domain.model;
 
-public final class Species {
+import java.io.Serializable;
+
+public class Species implements Serializable {
 
 }

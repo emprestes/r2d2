@@ -1,5 +1,7 @@
 package tradeforce.domain.model;
 
-public class Vehicle {
+import java.io.Serializable;
+
+public class Vehicle implements Serializable {
 
 }

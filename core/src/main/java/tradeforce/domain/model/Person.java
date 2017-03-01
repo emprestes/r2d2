@@ -1,4 +1,7 @@
 package tradeforce.domain.model;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
+
 }

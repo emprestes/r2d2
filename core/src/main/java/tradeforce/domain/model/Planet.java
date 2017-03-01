@@ -1,5 +1,7 @@
 package tradeforce.domain.model;
 
-public class Planet {
+import java.io.Serializable;
+
+public class Planet implements Serializable {
 
 }

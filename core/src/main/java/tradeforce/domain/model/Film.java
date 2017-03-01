@@ -1,5 +1,7 @@
 package tradeforce.domain.model;
 
-public class Film {
+import java.io.Serializable;
+
+public class Film implements Serializable {
 
 }
