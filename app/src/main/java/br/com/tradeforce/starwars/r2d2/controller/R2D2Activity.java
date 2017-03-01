@@ -105,8 +105,18 @@ public class R2D2Activity extends AppCompatActivity {
     }
 
     @Click(R.id.r2d2_hey)
-    void sayHeyYou() {
+    void sayR2D2() {
         MediaPlayer.create(this, R.raw.r2d2_hey_you).start();
+    }
+
+    @Click(R.id.poster)
+    void say() {
+        int id = (int) (1 + Math.random() * 4);
+        id = id == 1 ? R.raw.ending_08 : id;
+        id = id == 2 ? R.raw.ending_07 : id;
+        id = id == 3 ? R.raw.ending_11 : id;
+        id = id == 4 ? R.raw.ending_02 : id;
+        MediaPlayer.create(this, id).start();
     }
 
     @Override
