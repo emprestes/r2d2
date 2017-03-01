@@ -1,11 +1,13 @@
-package tradeforce.domain.model;
+package tradeforce.starwars.domain.model;
 
 import com.google.common.base.MoreObjects;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class Planet implements Serializable {
+import tradeforce.starwars.domain.Domain;
+
+public class Planet implements Domain, Serializable {
 
     private String name;
 
@@ -139,10 +141,12 @@ public class Planet implements Serializable {
         this.edited = edited;
     }
 
+    @Override
     public String getUrl() {
         return url;
     }
 
+    @Override
     public void setUrl(String url) {
         this.url = url;
     }
