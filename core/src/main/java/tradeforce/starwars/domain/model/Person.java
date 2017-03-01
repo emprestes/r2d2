@@ -45,120 +45,135 @@ public class Person implements Domain<Person>, Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public Person setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public Person setHeight(Integer height) {
         this.height = height;
+        return this;
     }
 
     public Integer getMass() {
         return mass;
     }
 
-    public void setMass(Integer mass) {
+    public Person setMass(Integer mass) {
         this.mass = mass;
+        return this;
     }
 
     public String getHair_color() {
         return hair_color;
     }
 
-    public void setHair_color(String hair_color) {
+    public Person setHair_color(String hair_color) {
         this.hair_color = hair_color;
+        return this;
     }
 
     public String getSkin_color() {
         return skin_color;
     }
 
-    public void setSkin_color(String skin_color) {
+    public Person setSkin_color(String skin_color) {
         this.skin_color = skin_color;
+        return this;
     }
 
     public String getEye_color() {
         return eye_color;
     }
 
-    public void setEye_color(String eye_color) {
+    public Person setEye_color(String eye_color) {
         this.eye_color = eye_color;
+        return this;
     }
 
     public String getBirth_year() {
         return birth_year;
     }
 
-    public void setBirth_year(String birth_year) {
+    public Person setBirth_year(String birth_year) {
         this.birth_year = birth_year;
+        return this;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public Person setGender(String gender) {
         this.gender = gender;
+        return this;
     }
 
     public String getHomeworld() {
         return homeworld;
     }
 
-    public void setHomeworld(String homeworld) {
+    public Person setHomeworld(String homeworld) {
         this.homeworld = homeworld;
+        return this;
     }
 
     public List<Film> getFilms() {
         return films;
     }
 
-    public void setFilms(List<Film> films) {
+    public Person setFilms(List<Film> films) {
         this.films = films;
+        return this;
     }
 
     public List<Species> getSpecies() {
         return species;
     }
 
-    public void setSpecies(List<Species> species) {
+    public Person setSpecies(List<Species> species) {
         this.species = species;
+        return this;
     }
 
     public List<Vehicle> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(List<Vehicle> vehicles) {
+    public Person setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
+        return this;
     }
 
     public List<StarShip> getStarships() {
         return starships;
     }
 
-    public void setStarships(List<StarShip> starships) {
+    public Person setStarships(List<StarShip> starships) {
         this.starships = starships;
+        return this;
     }
 
     public String getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public Person setCreated(String created) {
         this.created = created;
+        return this;
     }
 
     public String getEdited() {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    public Person setEdited(String edited) {
         this.edited = edited;
+        return this;
     }
 
     @Override
