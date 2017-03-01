@@ -9,4 +9,12 @@ interface Controllers {
     interface Credit {
         String ACTION = "starwars.intent.action.CREDIT";
     }
+
+    interface QRCode {
+        String ACTION = "starwars.intent.action.QRCODE";
+    }
+
+    interface BarcodeCapture {
+        String ACTION = "vision.intent.action.BARCODE";
+    }
 }

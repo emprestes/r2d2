@@ -95,6 +95,7 @@ public class R2D2Activity extends AppCompatActivity {
     @Click(R.id.qrcode)
     void meetCharacter() {
         MediaPlayer.create(this, R.raw.r2d2_yeah).start();
+        startActivity(Controllers.QRCode.ACTION);
     }
 
     @OptionsItem(R.id.list)
