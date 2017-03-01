@@ -49,136 +49,153 @@ public class StarShip implements Domain<StarShip>, Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public StarShip setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public StarShip setModel(String model) {
         this.model = model;
+        return this;
     }
 
     public String getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
+    public StarShip setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+        return this;
     }
 
     public String getCost_in_credits() {
         return cost_in_credits;
     }
 
-    public void setCost_in_credits(String cost_in_credits) {
+    public StarShip setCost_in_credits(String cost_in_credits) {
         this.cost_in_credits = cost_in_credits;
+        return this;
     }
 
     public String getLength() {
         return length;
     }
 
-    public void setLength(String length) {
+    public StarShip setLength(String length) {
         this.length = length;
+        return this;
     }
 
     public String getMax_atmosphering_speed() {
         return max_atmosphering_speed;
     }
 
-    public void setMax_atmosphering_speed(String max_atmosphering_speed) {
+    public StarShip setMax_atmosphering_speed(String max_atmosphering_speed) {
         this.max_atmosphering_speed = max_atmosphering_speed;
+        return this;
     }
 
     public Integer getCrew() {
         return crew;
     }
 
-    public void setCrew(Integer crew) {
+    public StarShip setCrew(Integer crew) {
         this.crew = crew;
+        return this;
     }
 
     public String getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(String passengers) {
+    public StarShip setPassengers(String passengers) {
         this.passengers = passengers;
+        return this;
     }
 
     public String getCargo_capacity() {
         return cargo_capacity;
     }
 
-    public void setCargo_capacity(String cargo_capacity) {
+    public StarShip setCargo_capacity(String cargo_capacity) {
         this.cargo_capacity = cargo_capacity;
+        return this;
     }
 
     public String getConsumables() {
         return consumables;
     }
 
-    public void setConsumables(String consumables) {
+    public StarShip setConsumables(String consumables) {
         this.consumables = consumables;
+        return this;
     }
 
     public String getHyperdrive_rating() {
         return hyperdrive_rating;
     }
 
-    public void setHyperdrive_rating(String hyperdrive_rating) {
+    public StarShip setHyperdrive_rating(String hyperdrive_rating) {
         this.hyperdrive_rating = hyperdrive_rating;
+        return this;
     }
 
     public String getMGLT() {
         return MGLT;
     }
 
-    public void setMGLT(String MGLT) {
+    public StarShip setMGLT(String MGLT) {
         this.MGLT = MGLT;
+        return this;
     }
 
     public String getStarship_class() {
         return starship_class;
     }
 
-    public void setStarship_class(String starship_class) {
+    public StarShip setStarship_class(String starship_class) {
         this.starship_class = starship_class;
+        return this;
     }
 
     public List<Person> getPilots() {
         return pilots;
     }
 
-    public void setPilots(List<Person> pilots) {
+    public StarShip setPilots(List<Person> pilots) {
         this.pilots = pilots;
+        return this;
     }
 
     public List<Film> getFilms() {
         return films;
     }
 
-    public void setFilms(List<Film> films) {
+    public StarShip setFilms(List<Film> films) {
         this.films = films;
+        return this;
     }
 
     public String getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public StarShip setCreated(String created) {
         this.created = created;
+        return this;
     }
 
     public String getEdited() {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    public StarShip setEdited(String edited) {
         this.edited = edited;
+        return this;
     }
 
     @Override
