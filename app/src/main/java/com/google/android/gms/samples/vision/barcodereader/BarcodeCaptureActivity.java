@@ -1,4 +1,4 @@
-package br.com.tradeforce.starwars.r2d2.vision.barcodereader;
+package com.google.android.gms.samples.vision.barcodereader;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -26,6 +26,10 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.BarcodeGraphic;
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview;
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
@@ -34,10 +38,6 @@ import java.io.IOException;
 
 import br.com.tradeforce.starwars.r2d2.R;
 import br.com.tradeforce.starwars.r2d2.support.v7.app.AppCompatActivity;
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.BarcodeGraphic;
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.CameraSource;
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.CameraSourcePreview;
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.GraphicOverlay;
 
 public class BarcodeCaptureActivity extends AppCompatActivity {
     // constants used to pass extra data in the intent
@@ -84,7 +84,7 @@ public class BarcodeCaptureActivity extends AppCompatActivity {
         gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
-        Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
+        Snackbar.make(mGraphicOverlay, getString(R.string.barcode_capture),
                 Snackbar.LENGTH_LONG)
                 .show();
     }

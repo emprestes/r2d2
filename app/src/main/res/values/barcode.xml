@@ -1,14 +1,10 @@
 <resources>
     <string name="ok">OK</string>
-    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
-    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
-    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
-    <string name="title_activity_main">Barcode Reader Sample</string>
-    <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
-    <string name="read_barcode">Read Barcode</string>
-    <string name="auto_focus">Auto Focus</string>
-    <string name="use_flash">Use Flash</string>
-    <string name="barcode_success">Barcode read successfully</string>
-    <string name="barcode_failure">No barcode captured</string>
-    <string name="barcode_error">"Error reading barcode: %1$s"</string>
+    <string name="permission_camera_rationale">Acesso à câmera é necessário para a captura</string>
+    <string name="no_camera_permission">Este APP não irá funcionar sem a permissão de uso da câmera.</string>
+    <string name="low_storage_error">As dependências do detector de rosto não podem ser baixadas devido ao baixo armazenamento do dispositivo</string>
+    <string name="barcode_success">Barcode lido com sucesso</string>
+    <string name="barcode_failure">Nenhum barcode capturado</string>
+    <string name="barcode_error">"Erro lendo barcode: %1$s"</string>
+    <string name="barcode_capture">Toque no QRCode para capturar.</string>
 </resources>

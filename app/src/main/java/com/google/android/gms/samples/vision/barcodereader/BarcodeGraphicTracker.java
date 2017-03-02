@@ -1,11 +1,10 @@
-package br.com.tradeforce.starwars.r2d2.vision.barcodereader;
+package com.google.android.gms.samples.vision.barcodereader;
 
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.BarcodeGraphic;
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.barcode.Barcode;
-
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.BarcodeGraphic;
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.GraphicOverlay;
 
 /**
  * Generic tracker which is used for tracking or reading a barcode (and can really be used for

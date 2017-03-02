@@ -1,4 +1,4 @@
-package br.com.tradeforce.starwars.r2d2.vision.ui.camera;
+package com.google.android.gms.samples.vision.barcodereader.ui.camera;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

@@ -1,11 +1,10 @@
-package br.com.tradeforce.starwars.r2d2.vision.barcodereader;
+package com.google.android.gms.samples.vision.barcodereader;
 
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.BarcodeGraphic;
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.barcode.Barcode;
-
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.BarcodeGraphic;
-import br.com.tradeforce.starwars.r2d2.vision.ui.camera.GraphicOverlay;
 
 /**
  * Factory for creating a tracker and associated graphic to be associated with a new barcode.  The
