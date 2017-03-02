@@ -1,6 +1,7 @@
 package br.com.tradeforce.starwars.r2d2.controller;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -167,7 +168,13 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(Controllers.R2D2.ACTION);
-        finish();
+        mContentView.pause();
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.fail);
+        mp.setOnCompletionListener(p -> {
+            mContentView.stopPlayback();
+            startActivity(Controllers.R2D2.ACTION);
+            finish();
+        });
+        mp.start();
     }
 }

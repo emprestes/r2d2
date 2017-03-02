@@ -1,6 +1,7 @@
 package br.com.tradeforce.starwars.r2d2.controller;
 
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.view.Display;
@@ -23,6 +24,9 @@ import org.androidannotations.annotations.ViewById;
 import br.com.tradeforce.starwars.r2d2.R;
 import br.com.tradeforce.starwars.r2d2.support.v7.app.AppCompatActivity;
 import br.com.tradeforce.starwars.r2d2.view.animation.AnimationAdapter;
+
+import static br.com.tradeforce.starwars.r2d2.controller.Controllers.QRCode;
+import static br.com.tradeforce.starwars.r2d2.controller.Controllers.R2D2;
 
 @EActivity(R.layout.activity_r2d2)
 @OptionsMenu(R.menu.r2d2)
@@ -95,7 +99,10 @@ public class R2D2Activity extends AppCompatActivity {
     @Click(R.id.qrcode)
     void meetCharacter() {
         MediaPlayer.create(this, R.raw.r2d2_yeah).start();
-        startActivity(Controllers.QRCode.ACTION);
+        Bundle options = new Bundle();
+
+        options.putInt(QRCode.KEY_CODE, R2D2.REQUEST_CODE);
+        startActivity(QRCode.ACTION, options);
     }
 
     @OptionsItem(R.id.list)
@@ -124,6 +131,12 @@ public class R2D2Activity extends AppCompatActivity {
         stopSound();
         startActivity(Controllers.Credit.ACTION);
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        stopSound();
+        super.onPause();
     }
 
     private void stopSound() {
