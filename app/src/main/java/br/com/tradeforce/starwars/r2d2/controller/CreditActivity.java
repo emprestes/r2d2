@@ -2,6 +2,9 @@ package br.com.tradeforce.starwars.r2d2.controller;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -17,35 +20,43 @@ import br.com.tradeforce.starwars.r2d2.support.v7.app.AppCompatActivity;
 public class CreditActivity extends AppCompatActivity {
 
     @ViewById
-    VideoView ending;
+    ImageView image;
+
+    @ViewById
+    VideoView video;
 
     @AfterViews
     void init() {
-        int id;
-
+        MediaPlayer.create(this, R.raw.bb8_001).start();
         Toast.makeText(this, R.string.thanks, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, R.string.enjoy, Toast.LENGTH_SHORT).show();
 
-        id = (int) (1 + Math.random() * 8);
-        id = id == 1 ? R.raw.sw_ending_1 : id;
-        id = id == 2 ? R.raw.sw_ending_2 : id;
-        id = id == 3 ? R.raw.sw_ending_3 : id;
-        id = id == 4 ? R.raw.sw_ending_4 : id;
-        id = id == 5 ? R.raw.sw_ending_5 : id;
-        id = id == 6 ? R.raw.sw_ending_6 : id;
-        id = id == 7 || id == 8 ? R.raw.sw_ending_7 : id;
+        Handler h = new Handler();
 
-        ending.setOnCompletionListener(mp -> {
-            if (!mp.isPlaying()) {
-                finish();
-            }
-        });
-        ending.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + id));
-        ending.start();
+        h.postDelayed(() -> {
+            image.setVisibility(View.INVISIBLE);
+            video.setVisibility(View.VISIBLE);
+            int id = (int) (1 + Math.random() * 8);
+            id = id == 1 ? R.raw.sw_ending_1 : id;
+            id = id == 2 ? R.raw.sw_ending_2 : id;
+            id = id == 3 ? R.raw.sw_ending_3 : id;
+            id = id == 4 ? R.raw.sw_ending_4 : id;
+            id = id == 5 ? R.raw.sw_ending_5 : id;
+            id = id == 6 ? R.raw.sw_ending_6 : id;
+            id = id == 7 || id == 8 ? R.raw.sw_ending_7 : id;
+            video.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + id));
+            video.setOnCompletionListener(mp -> {
+                if (!mp.isPlaying()) {
+                    finish();
+                }
+            });
+            video.start();
+        }, 5000L);
     }
 
     @Touch
-    void ending() {
+    void video() {
+        MediaPlayer.create(this, R.raw.bb8_002).start();
         Toast.makeText(this, R.string.exit_press_back, Toast.LENGTH_SHORT).show();
     }
 
