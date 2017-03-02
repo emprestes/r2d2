@@ -13,4 +13,16 @@
     <string name="enjoy">Aprovite esse final :)</string>
     <string name="byebye">Bye bye…</string>
     <string name="barcode">R2D2: QRCode</string>
+    <string name="character">Personagem</string>
+    <string name="films">Filmes</string>
+    <string name="character_url">URL:</string>
+    <string name="character_height">Altura:</string>
+    <string name="character_mass">Massa:</string>
+    <string name="character_hair">Cabelo:</string>
+    <string name="character_skin">Pele:</string>
+    <string name="character_eyes">Olhos:</string>
+    <string name="character_planet">Planeta:</string>
+    <string name="character_created">Criado:</string>
+    <string name="character_edited">Editado:</string>
+    <string name="bb8">bb8</string>
 </resources>

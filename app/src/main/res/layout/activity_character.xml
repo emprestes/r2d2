@@ -2,6 +2,161 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/star_wars_006"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/character"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/characterImage"
+            android:layout_width="120dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:drawable/alert_light_frame"
+            android:contentDescription="@string/character"
+            android:src="@drawable/star_wars" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:drawable/alert_light_frame"
+            android:stretchColumns="1">
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_height" />
+
+                <TextView
+                    android:id="@+id/height"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_mass" />
+
+                <TextView
+                    android:id="@+id/mass"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_hair" />
+
+                <TextView
+                    android:id="@+id/hair"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_skin" />
+
+                <TextView
+                    android:id="@+id/skin"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_eyes" />
+
+                <TextView
+                    android:id="@+id/eyes"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_planet" />
+
+                <TextView
+                    android:id="@+id/planet"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_created" />
+
+                <TextView
+                    android:id="@+id/dateCreated"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_edited" />
+
+                <TextView
+                    android:id="@+id/dateEdited"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:layout_span="2"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/url"
+                    style="@style/TableColumnValue.Center" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/films"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            style="@style/Base.DialogWindowTitle.AppCompat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/films"
+            android:textAlignment="center" />
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </LinearLayout>
 </LinearLayout>

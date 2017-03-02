@@ -48,7 +48,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.QRCodeActivity_">
+        <activity android:name=".controller.CharacterActivity_">
             <intent-filter>
                 <action android:name="starwars.intent.action.QRCODE" />
                 <category android:name="android.intent.category.DEFAULT" />
