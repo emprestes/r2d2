@@ -4,6 +4,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -48,9 +49,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.CharacterActivity_">
+        <activity
+            android:name=".controller.CharacterActivity_"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="starwars.intent.action.QRCODE" />
+                <action android:name="starwars.intent.action.CHARACTER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -63,5 +66,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".controller.SaveCharacterService_"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="starwars.intent.action.SAVE_CHARACTER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>

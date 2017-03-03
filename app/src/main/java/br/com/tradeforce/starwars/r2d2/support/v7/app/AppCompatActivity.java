@@ -3,6 +3,8 @@ package br.com.tradeforce.starwars.r2d2.support.v7.app;
 import android.content.Intent;
 import android.os.Bundle;
 
+import br.com.tradeforce.starwars.r2d2.controller.Controllers;
+
 public abstract class AppCompatActivity extends android.support.v7.app.AppCompatActivity {
 
     protected void startActivity(String action) {
@@ -18,5 +20,19 @@ public abstract class AppCompatActivity extends android.support.v7.app.AppCompat
     protected void startActivityForResult(String action, int requestCode) {
         Intent intent = new Intent(action);
         startActivityForResult(intent, requestCode);
+    }
+
+    protected void startService(String action, Bundle options) {
+        Intent i = new Intent(action);
+        i.setPackage(getPackageName());
+        i.putExtras(options);
+        startService(i);
+    }
+
+    protected void checkException(Intent i) throws Exception {
+        Exception cause = (Exception) i.getSerializableExtra(Controllers.EXCEPTION);
+        if (cause != null) {
+            throw cause;
+        }
     }
 }
