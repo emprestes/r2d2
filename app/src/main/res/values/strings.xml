@@ -30,4 +30,5 @@
     <string name="character_gender">Gênero</string>
     <string name="character_birth_year">Ano:</string>
     <string name="saved">Salvo: %s</string>
+    <string name="film_title" formatted="false">%s (Epsódio %s)</string>
 </resources>

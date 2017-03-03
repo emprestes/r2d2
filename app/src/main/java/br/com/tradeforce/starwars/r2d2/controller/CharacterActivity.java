@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,10 +22,12 @@ import org.androidannotations.annotations.Receiver;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import br.com.tradeforce.starwars.r2d2.R;
 import br.com.tradeforce.starwars.r2d2.repository.sqlite.SQLiteHelper;
 import br.com.tradeforce.starwars.r2d2.support.v7.app.AppCompatActivity;
+import br.com.tradeforce.starwars.r2d2.view.FilmAdapter;
 import tradeforce.starwars.domain.model.Film;
 import tradeforce.starwars.domain.model.Person;
 
@@ -95,10 +96,9 @@ public class CharacterActivity extends AppCompatActivity {
 
             ArrayList<Film> films = new ArrayList<>();
             films.addAll(filmDAO.findById(Film._ID_PERSON, p.getId()));
+            Collections.sort(films, (o1, o2) -> o1.getEpisode_id().compareTo(o2.getEpisode_id()));
 
-            list.setAdapter(new ArrayAdapter<>(this,
-                    android.R.layout.simple_list_item_activated_1,
-                    films));
+            list.setAdapter(new FilmAdapter(this, R.layout.film, films));
             filmsView.setVisibility(View.VISIBLE);
         } catch (Exception cause) {
             Log.e("character", cause.getMessage(), cause);
