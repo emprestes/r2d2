@@ -25,7 +25,7 @@ import br.com.tradeforce.starwars.r2d2.R;
 import br.com.tradeforce.starwars.r2d2.support.v7.app.AppCompatActivity;
 import br.com.tradeforce.starwars.r2d2.view.animation.AnimationAdapter;
 
-import static br.com.tradeforce.starwars.r2d2.controller.Controllers.QRCode;
+import static br.com.tradeforce.starwars.r2d2.controller.Controllers.Character;
 import static br.com.tradeforce.starwars.r2d2.controller.Controllers.R2D2;
 
 @EActivity(R.layout.activity_r2d2)
@@ -101,8 +101,8 @@ public class R2D2Activity extends AppCompatActivity {
         MediaPlayer.create(this, R.raw.r2d2_yeah).start();
         Bundle options = new Bundle();
 
-        options.putInt(QRCode.KEY_CODE, R2D2.REQUEST_CODE);
-        startActivity(QRCode.ACTION, options);
+        options.putInt(Character.KEY_CODE, R2D2.REQUEST_CODE);
+        startActivity(Character.ACTION, options);
     }
 
     @OptionsItem(R.id.list)
