@@ -7,6 +7,6 @@ import tradeforce.starwars.domain.model.Planet;
 
 public interface PlanetEndpoint {
 
-    @GET("/planets/{id}/")
-    Call<Planet> get(@Path("id") Integer id);
+    @GET("planets/{id}/?format=json")
+    Call<Planet> get(@Path("id") Long id);
 }

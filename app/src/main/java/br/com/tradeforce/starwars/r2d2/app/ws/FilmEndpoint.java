@@ -7,6 +7,6 @@ import tradeforce.starwars.domain.model.Film;
 
 public interface FilmEndpoint {
 
-    @GET("/films/{id}/")
-    Call<Film> get(@Path("id") Integer id);
+    @GET("films/{id}/?format=json")
+    Call<Film> get(@Path("id") Long id);
 }

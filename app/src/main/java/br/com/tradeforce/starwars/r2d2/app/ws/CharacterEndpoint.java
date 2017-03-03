@@ -7,6 +7,6 @@ import tradeforce.starwars.domain.model.Person;
 
 public interface CharacterEndpoint {
 
-    @GET("/people/{id}/")
-    Call<Person> get(@Path("id") Integer id);
+    @GET("people/{id}/?format=json")
+    Call<Person> get(@Path("id") Long id);
 }
