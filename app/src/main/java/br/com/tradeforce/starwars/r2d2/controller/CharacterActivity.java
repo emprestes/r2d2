@@ -96,7 +96,7 @@ public class CharacterActivity extends AppCompatActivity {
 
             ArrayList<Film> films = new ArrayList<>();
             films.addAll(filmDAO.findById(Film._ID_PERSON, p.getId()));
-            Collections.sort(films, (o1, o2) -> o1.getEpisode_id().compareTo(o2.getEpisode_id()));
+            Collections.sort(films);
 
             list.setAdapter(new FilmAdapter(this, R.layout.film, films));
             filmsView.setVisibility(View.VISIBLE);
