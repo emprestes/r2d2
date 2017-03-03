@@ -2,6 +2,7 @@ package tradeforce.starwars.r2d2.controller;
 
 public interface Controllers {
     String EXCEPTION = "exception.CONTROLLERS";
+    String ORIGIN = "origin.CONTROLLERS";
 
     interface Character {
         String ACTION = "starwars.intent.action.CHARACTER";

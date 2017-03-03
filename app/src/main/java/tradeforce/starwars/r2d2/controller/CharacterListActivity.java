@@ -32,14 +32,18 @@ public class CharacterListActivity extends AppCompatActivity {
 
     private MediaPlayer mp;
 
+    private int requestCode;
+
     @AfterViews
     void init() {
         list.setOnItemClickListener((parent, view, position, id) -> {
             MediaPlayer.create(CharacterListActivity.this, R.raw.r2d2_yeah).start();
             Bundle options = new Bundle();
 
-            options.putInt(Character.KEY_CODE, Character.REQUEST_CODE);
+            requestCode = Character.REQUEST_CODE;
+            options.putInt(Character.KEY_CODE, requestCode);
             options.putBoolean(Character.FOUND, Boolean.TRUE);
+            options.putString(Controllers.ORIGIN, Character.List.ACTION);
             options.putSerializable(Character.KEY_MODEL, (Serializable) view.getTag());
 
             startActivity(Character.ACTION, options);
@@ -49,9 +53,13 @@ public class CharacterListActivity extends AppCompatActivity {
     void load() {
         SQLiteHelper.ReadableDAO<Person> personDAO;
 
-        mp = MediaPlayer.create(this, R.raw.sw_cantina);
-        mp.setLooping(Boolean.TRUE);
-        mp.start();
+        if (mp == null) {
+            mp = MediaPlayer.create(this, R.raw.sw_cantina);
+            mp.setLooping(Boolean.TRUE);
+        }
+        if (!mp.isPlaying()) {
+            mp.start();
+        }
 
         personDAO = SQLiteHelper.getDAOReadable(this, Person.class);
         try {
@@ -68,6 +76,17 @@ public class CharacterListActivity extends AppCompatActivity {
         }
     }
 
+    @OptionsItem
+    void qrcode() {
+        MediaPlayer.create(this, R.raw.r2d2_yeah).start();
+        Bundle options = new Bundle();
+
+        requestCode = BarcodeCapture.REQUEST_CODE;
+        options.putInt(Character.KEY_CODE, requestCode);
+        options.putString(Controllers.ORIGIN, Character.List.ACTION);
+        startActivity(Character.ACTION, options);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -75,19 +94,19 @@ public class CharacterListActivity extends AppCompatActivity {
         load();
     }
 
-    @OptionsItem
-    void qrcode() {
-        MediaPlayer.create(this, R.raw.r2d2_yeah).start();
-        Bundle options = new Bundle();
-
-        options.putInt(Character.KEY_CODE, BarcodeCapture.REQUEST_CODE);
-        startActivity(Character.ACTION, options);
-    }
-
     @Override
     protected void onPause() {
-        mp.stop();
-        mp = null;
+        switch (requestCode) {
+            case BarcodeCapture.REQUEST_CODE:
+            case Character.REQUEST_CODE:
+                break;
+            default:
+                mp.stop();
+                mp = null;
+                break;
+        }
+
+        requestCode = 0;
         super.onPause();
     }
 }

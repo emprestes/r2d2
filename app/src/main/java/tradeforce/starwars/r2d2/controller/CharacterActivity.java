@@ -55,12 +55,14 @@ public class CharacterActivity extends AppCompatActivity {
 
     private ProgressDialog loading;
 
+    private String origin;
+
     @AfterViews
     void init() {
         Intent i = getIntent();
-        int code = i.getIntExtra(Character.KEY_CODE, 0);
+        int requestCode = i.getIntExtra(Character.KEY_CODE, 0);
 
-        switch (code) {
+        switch (requestCode) {
             case BarcodeCapture.REQUEST_CODE:
                 qrcode();
                 break;
@@ -68,6 +70,9 @@ public class CharacterActivity extends AppCompatActivity {
                 set(i);
                 break;
         }
+
+        origin = i.getStringExtra(Controllers.ORIGIN);
+        origin = origin == null ? "" : origin;
     }
 
     @OptionsItem
@@ -79,7 +84,15 @@ public class CharacterActivity extends AppCompatActivity {
     @OptionsItem
     void list() {
         MediaPlayer.create(this, R.raw.r2d2_do).start();
-        startActivity(Character.List.ACTION);
+
+        switch (origin) {
+            case Character.List.ACTION:
+                break;
+            default:
+                startActivity(Character.List.ACTION);
+                break;
+        }
+
         finish();
     }
 
