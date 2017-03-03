@@ -11,18 +11,18 @@ public class FilmComparabilityTest extends ComparabilityTestCase {
     @Override
     protected Comparable createLessInstance() throws Exception {
         return new Film()
-                .setUrl("film01");
+                .setEpisode_id("1");
     }
 
     @Override
     protected Comparable createEqualInstance() throws Exception {
         return new Film()
-                .setUrl("film02");
+                .setEpisode_id("2");
     }
 
     @Override
     protected Comparable createGreaterInstance() throws Exception {
         return new Film()
-                .setUrl("film03");
+                .setEpisode_id("3");
     }
 }

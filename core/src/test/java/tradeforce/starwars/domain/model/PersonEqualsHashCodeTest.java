@@ -18,9 +18,9 @@ public class PersonEqualsHashCodeTest extends EqualsHashCodeTestCase {
                 .setEye_color("person1")
                 .setGender("person1")
                 .setHair_color("person1")
-                .setHeight(1)
+                .setHeight("1")
                 .setHomeworld("person1")
-                .setMass(1)
+                .setMass("1")
                 .setSkin_color("person1")
                 .setUrl("person1");
     }
@@ -35,9 +35,9 @@ public class PersonEqualsHashCodeTest extends EqualsHashCodeTestCase {
                 .setEye_color("person2")
                 .setGender("person2")
                 .setHair_color("person2")
-                .setHeight(2)
+                .setHeight("2")
                 .setHomeworld("person2")
-                .setMass(2)
+                .setMass("2")
                 .setSkin_color("person2")
                 .setUrl("person2");
     }

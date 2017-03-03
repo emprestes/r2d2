@@ -17,7 +17,7 @@ public class FilmSerializabilityTest extends SerializabilityTestCase {
                 .setCreated("film01")
                 .setDirector("film01")
                 .setEdited("film01")
-                .setEpisode_id(1)
+                .setEpisode_id("1")
                 .setOpening_crawl("film01")
                 .setProducer("film01")
                 .setRelease_date("film01")

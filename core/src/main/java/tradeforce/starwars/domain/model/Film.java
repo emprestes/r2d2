@@ -262,7 +262,7 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
 
     @Override
     public int compareTo(Film o) {
-        return getUrl().compareTo(o.getUrl());
+        return getEpisode_id().compareTo(o.getEpisode_id());
     }
 
     @Override

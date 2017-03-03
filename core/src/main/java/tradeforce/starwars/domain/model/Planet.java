@@ -24,13 +24,13 @@ public class Planet implements Serializable {
 
         Planet planet = (Planet) o;
 
-        return getName() != null ? !getName().equals(planet.getName()) : planet.getName() != null;
+        return getName() != null ? getName().equals(planet.getName()) : planet.getName() == null;
+
     }
 
     @Override
     public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        return result;
+        return getName() != null ? getName().hashCode() : 0;
     }
 
     @Override
