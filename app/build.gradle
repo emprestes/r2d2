@@ -45,6 +45,7 @@ dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support:design:25.2.0'
