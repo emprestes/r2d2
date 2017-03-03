@@ -36,8 +36,8 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-import br.com.tradeforce.starwars.r2d2.R;
-import br.com.tradeforce.starwars.r2d2.support.v7.app.AppCompatActivity;
+import tradeforce.starwars.r2d2.R;
+import tradeforce.starwars.r2d2.app.AppCompatActivity;
 
 public class BarcodeCaptureActivity extends AppCompatActivity {
     // constants used to pass extra data in the intent

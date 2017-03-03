@@ -284,7 +284,7 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
 
     @Override
     public int compareTo(Person o) {
-        return getUrl().compareTo(o.getUrl());
+        return getName().compareTo(o.getName());
     }
 
     @Override

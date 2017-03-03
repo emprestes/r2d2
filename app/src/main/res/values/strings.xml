@@ -3,7 +3,7 @@
 
     <string name="r2d2_label">R2D2 apresenta…</string>
     <string name="starwars_label">Star Wars: R2D2</string>
-    <string name="dummy_button">Meus personagens</string>
+    <string name="my_characters">Meus personagens</string>
     <string name="character_list">Meus Personagens</string>
     <string name="character_new">Conhecer personagem (QRCode)</string>
     <string name="list">Listar</string>
@@ -14,7 +14,7 @@
     <string name="byebye">Bye bye…</string>
     <string name="barcode">R2D2: QRCode</string>
     <string name="character">Personagem</string>
-    <string name="films">Filmes</string>
+    <string name="values">Filmes</string>
     <string name="character_url">URL:</string>
     <string name="character_height">Altura:</string>
     <string name="character_mass">Massa:</string>
@@ -31,4 +31,5 @@
     <string name="character_birth_year">Ano:</string>
     <string name="saved">Salvo: %s</string>
     <string name="film_title" formatted="false">%s (Epsódio %s)</string>
+    <string name="character_not_found">Personagem não encontrado!</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.tradeforce.starwars.r2d2">
+    package="tradeforce.starwars.r2d2">
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -63,6 +63,15 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="vision.intent.action.BARCODE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".controller.CharacterListActivity_"
+            android:label="@string/my_characters"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="starwars.intent.action.LIST_CHARACTER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

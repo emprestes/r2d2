@@ -11,18 +11,18 @@ public class PersonComparabilityTest extends ComparabilityTestCase {
     @Override
     protected Comparable createLessInstance() throws Exception {
         return new Person()
-                .setUrl("person1");
+                .setName("person1");
     }
 
     @Override
     protected Comparable createEqualInstance() throws Exception {
         return new Person()
-                .setUrl("person2");
+                .setName("person2");
     }
 
     @Override
     protected Comparable createGreaterInstance() throws Exception {
         return new Person()
-                .setUrl("person3");
+                .setName("person3");
     }
 }

@@ -7,7 +7,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "br.com.tradeforce.starwars.r2d2"
+        applicationId "tradeforce.starwars.r2d2"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -23,6 +23,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    signingConfigs {
+        defaultConfig {
+            v2SigningEnabled false
+        }
     }
 }
 
