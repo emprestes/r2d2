@@ -2,16 +2,31 @@ package tradeforce.starwars.domain.model;
 
 import com.google.common.base.MoreObjects;
 
-import java.io.Serializable;
 import java.util.List;
 
-import tradeforce.starwars.domain.Domain;
+import tradeforce.starwars.repository.orm.Column;
+import tradeforce.starwars.repository.orm.Entity;
+import tradeforce.starwars.repository.orm.Id;
+import tradeforce.starwars.repository.orm.Table;
 
-public class Film implements Domain<Film>, Serializable {
+@Entity
+@Table("filme")
+public class Film implements tradeforce.starwars.repository.Entity<Long>, Comparable<Film> {
 
+    public static final String _ID_PERSON = "id_personagem";
+
+    @Id(autoincrement = false)
+    @Column(name = _ID, nullable = false)
+    private Long id;
+
+    @Column(name = _ID_PERSON, nullable = false)
+    private Long idPerson;
+
+    @Column(name = "nm_titulo", nullable = false)
     private String title;
 
-    private Integer episode_id;
+    @Column(name = "id_episodio")
+    private String episode_id;
 
     private String opening_crawl;
 
@@ -21,21 +36,47 @@ public class Film implements Domain<Film>, Serializable {
 
     private String release_date;
 
-    private List<Person> characters;
+    private List<String> characters;
 
-    private List<Planet> planets;
+    private List<String> planets;
 
-    private List<StarShip> starships;
+    private List<String> starships;
 
-    private List<Vehicle> vehicles;
+    private List<String> vehicles;
 
-    private List<Species> species;
+    private List<String> species;
 
+    @Column(name = "dt_criacao", nullable = false)
     private String created;
 
+    @Column(name = "dt_edicao", nullable = false)
     private String edited;
 
+    @Column(name = "ds_url", nullable = false)
     private String url;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean hasId() {
+        return getId() != null;
+    }
+
+    public Long getIdPerson() {
+        return idPerson;
+    }
+
+    public void setIdPerson(Long idPerson) {
+        this.idPerson = idPerson;
+    }
 
     public String getTitle() {
         return title;
@@ -46,11 +87,11 @@ public class Film implements Domain<Film>, Serializable {
         return this;
     }
 
-    public Integer getEpisode_id() {
+    public String getEpisode_id() {
         return episode_id;
     }
 
-    public Film setEpisode_id(Integer episode_id) {
+    public Film setEpisode_id(String episode_id) {
         this.episode_id = episode_id;
         return this;
     }
@@ -91,47 +132,47 @@ public class Film implements Domain<Film>, Serializable {
         return this;
     }
 
-    public List<Person> getCharacters() {
+    public List<String> getCharacters() {
         return characters;
     }
 
-    public Film setCharacters(List<Person> characters) {
+    public Film setCharacters(List<String> characters) {
         this.characters = characters;
         return this;
     }
 
-    public List<Planet> getPlanets() {
+    public List<String> getPlanets() {
         return planets;
     }
 
-    public Film setPlanets(List<Planet> planets) {
+    public Film setPlanets(List<String> planets) {
         this.planets = planets;
         return this;
     }
 
-    public List<StarShip> getStarships() {
+    public List<String> getStarships() {
         return starships;
     }
 
-    public Film setStarships(List<StarShip> starships) {
+    public Film setStarships(List<String> starships) {
         this.starships = starships;
         return this;
     }
 
-    public List<Vehicle> getVehicles() {
+    public List<String> getVehicles() {
         return vehicles;
     }
 
-    public Film setVehicles(List<Vehicle> vehicles) {
+    public Film setVehicles(List<String> vehicles) {
         this.vehicles = vehicles;
         return this;
     }
 
-    public List<Species> getSpecies() {
+    public List<String> getSpecies() {
         return species;
     }
 
-    public Film setSpecies(List<Species> species) {
+    public Film setSpecies(List<String> species) {
         this.species = species;
         return this;
     }
@@ -154,12 +195,10 @@ public class Film implements Domain<Film>, Serializable {
         return this;
     }
 
-    @Override
     public String getUrl() {
         return url;
     }
 
-    @Override
     public Film setUrl(String url) {
         this.url = url;
         return this;
@@ -249,6 +288,8 @@ public class Film implements Domain<Film>, Serializable {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("idPerson", idPerson)
                 .add("title", title)
                 .add("episode_id", episode_id)
                 .add("opening_crawl", opening_crawl)

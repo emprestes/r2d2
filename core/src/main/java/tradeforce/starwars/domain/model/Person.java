@@ -2,44 +2,79 @@ package tradeforce.starwars.domain.model;
 
 import com.google.common.base.MoreObjects;
 
-import java.io.Serializable;
 import java.util.List;
 
-import tradeforce.starwars.domain.Domain;
+import tradeforce.starwars.repository.orm.Column;
+import tradeforce.starwars.repository.orm.Entity;
+import tradeforce.starwars.repository.orm.Id;
+import tradeforce.starwars.repository.orm.Table;
 
-public class Person implements Domain<Person>, Serializable {
+@Entity
+@Table("personagem")
+public class Person implements tradeforce.starwars.repository.Entity<Long>, Comparable<Person> {
 
+    @Id(autoincrement = false)
+    @Column(name = _ID, nullable = false)
+    private Long id;
+
+    @Column(name = "vl_url", nullable = false)
+    private String url;
+
+    @Column(name = "nm_personagem", nullable = false)
     private String name;
 
-    private Integer height;
+    @Column(name = "vl_altura")
+    private String height;
 
-    private Integer mass;
+    @Column(name = "vl_massa")
+    private String mass;
 
+    @Column(name = "ds_cor_cabelo")
     private String hair_color;
 
+    @Column(name = "ds_cor_pele")
     private String skin_color;
 
+    @Column(name = "ds_cor_olhos")
     private String eye_color;
 
+    @Column(name = "vl_ano_nascimento")
     private String birth_year;
 
+    @Column(name = "ds_genero")
     private String gender;
 
+    @Column(name = "nm_planeta")
     private String homeworld;
 
-    private List<Film> films;
+    private List<String> films;
 
-    private List<Species> species;
+    private List<String> species;
 
-    private List<Vehicle> vehicles;
+    private List<String> vehicles;
 
-    private List<StarShip> starships;
+    private List<String> starships;
 
+    @Column(name = "dt_criacao", nullable = false)
     private String created;
 
+    @Column(name = "dt_edicao", nullable = false)
     private String edited;
 
-    private String url;
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean hasId() {
+        return getId() != null;
+    }
 
     public String getName() {
         return name;
@@ -50,20 +85,20 @@ public class Person implements Domain<Person>, Serializable {
         return this;
     }
 
-    public Integer getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public Person setHeight(Integer height) {
+    public Person setHeight(String height) {
         this.height = height;
         return this;
     }
 
-    public Integer getMass() {
+    public String getMass() {
         return mass;
     }
 
-    public Person setMass(Integer mass) {
+    public Person setMass(String mass) {
         this.mass = mass;
         return this;
     }
@@ -122,38 +157,38 @@ public class Person implements Domain<Person>, Serializable {
         return this;
     }
 
-    public List<Film> getFilms() {
+    public List<String> getFilms() {
         return films;
     }
 
-    public Person setFilms(List<Film> films) {
+    public Person setFilms(List<String> films) {
         this.films = films;
         return this;
     }
 
-    public List<Species> getSpecies() {
+    public List<String> getSpecies() {
         return species;
     }
 
-    public Person setSpecies(List<Species> species) {
+    public Person setSpecies(List<String> species) {
         this.species = species;
         return this;
     }
 
-    public List<Vehicle> getVehicles() {
+    public List<String> getVehicles() {
         return vehicles;
     }
 
-    public Person setVehicles(List<Vehicle> vehicles) {
+    public Person setVehicles(List<String> vehicles) {
         this.vehicles = vehicles;
         return this;
     }
 
-    public List<StarShip> getStarships() {
+    public List<String> getStarships() {
         return starships;
     }
 
-    public Person setStarships(List<StarShip> starships) {
+    public Person setStarships(List<String> starships) {
         this.starships = starships;
         return this;
     }
@@ -176,12 +211,10 @@ public class Person implements Domain<Person>, Serializable {
         return this;
     }
 
-    @Override
     public String getUrl() {
         return url;
     }
 
-    @Override
     public Person setUrl(String url) {
         this.url = url;
         return this;
@@ -279,6 +312,7 @@ public class Person implements Domain<Person>, Serializable {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
+                .add("id", id)
                 .add("name", name)
                 .add("height", height)
                 .add("mass", mass)
