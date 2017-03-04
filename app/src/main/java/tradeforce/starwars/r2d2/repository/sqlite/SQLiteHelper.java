@@ -85,7 +85,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
     }
 
-    public static class ReadableDAO<E extends Entity> extends DAO<E> {
+    public static class ReadableDAO<E extends Entity> extends DAO<E> implements AutoCloseable {
 
         String[] columns;
 

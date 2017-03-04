@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.samples.vision.barcodereader.BarcodeCaptureActivity;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import org.androidannotations.annotations.AfterViews;
@@ -21,18 +22,13 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.Receiver;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import tradeforce.starwars.domain.model.Film;
 import tradeforce.starwars.domain.model.Person;
 import tradeforce.starwars.r2d2.R;
 import tradeforce.starwars.r2d2.app.AppCompatActivity;
-import tradeforce.starwars.r2d2.repository.sqlite.SQLiteHelper;
-import tradeforce.starwars.r2d2.view.FilmAdapter;
 
 import static tradeforce.starwars.r2d2.controller.Controllers.BarcodeCapture;
 import static tradeforce.starwars.r2d2.controller.Controllers.Character;
+import static tradeforce.starwars.r2d2.controller.Controllers.Maps;
 
 @EActivity(R.layout.activity_character)
 @OptionsMenu(R.menu.character)
@@ -47,10 +43,10 @@ public class CharacterActivity extends AppCompatActivity {
     @ViewById
     TextView height, mass, hair, skin, eyes, planet, birthYear, gender, url;
 
-    @ViewById
-    View filmsView;
+    @ViewById(android.R.id.tabhost)
+    FragmentTabHost tabhost;
 
-    @ViewById
+    @ViewById(android.R.id.list)
     ListView list;
 
     private ProgressDialog loading;
@@ -78,7 +74,10 @@ public class CharacterActivity extends AppCompatActivity {
     @OptionsItem
     void qrcode() {
         MediaPlayer.create(this, R.raw.r2d2_yeah).start();
-        startActivityForResult(BarcodeCapture.ACTION, Character.REQUEST_CODE);
+        Bundle options = new Bundle();
+        options.putBoolean(BarcodeCapture.AUTO_FOCUS, Boolean.TRUE);
+        options.putBoolean(BarcodeCapture.USE_FLASH, Boolean.TRUE);
+        startActivityForResult(BarcodeCapture.ACTION, Character.REQUEST_CODE, options);
     }
 
     @OptionsItem
@@ -96,6 +95,12 @@ public class CharacterActivity extends AppCompatActivity {
         finish();
     }
 
+    @OptionsItem
+    void myLocation() {
+        MediaPlayer.create(this, R.raw.r2d2_yeah).start();
+        startActivity(Maps.ACTION);
+    }
+
     @Receiver(actions = Character.ACTION, registerAt = Receiver.RegisterAt.OnResumeOnPause)
     void onReceive(Intent i) {
         try {
@@ -109,43 +114,43 @@ public class CharacterActivity extends AppCompatActivity {
     }
 
     private void set(Intent i) {
-        SQLiteHelper.ReadableDAO<Film> filmDAO;
         final Person p;
 
         Boolean found = i.getBooleanExtra(Character.FOUND, Boolean.FALSE);
         if (found) {
             p = (Person) i.getSerializableExtra(Character.KEY_MODEL);
             if (p != null) {
-                filmDAO = SQLiteHelper.getDAOReadable(this, Film.class);
-                try {
-                    setTitle(p.getName());
-                    height.setText(p.getHeight());
-                    mass.setText(p.getMass());
-                    hair.setText(p.getHair_color());
-                    skin.setText(p.getSkin_color());
-                    eyes.setText(p.getEye_color());
-                    planet.setText(p.getHomeworld());
-                    birthYear.setText(p.getBirth_year());
-                    gender.setText(p.getGender());
-                    url.setText(p.getUrl());
-                    characterView.setVisibility(View.VISIBLE);
+                setTitle(p.getName());
+                height.setText(p.getHeight());
+                mass.setText(p.getMass());
+                hair.setText(p.getHair_color());
+                skin.setText(p.getSkin_color());
+                eyes.setText(p.getEye_color());
+                planet.setText(p.getHomeworld());
+                birthYear.setText(p.getBirth_year());
+                gender.setText(p.getGender());
+                url.setText(p.getUrl());
+                characterView.setVisibility(View.VISIBLE);
 
-                    ArrayList<Film> films = new ArrayList<>();
-                    films.addAll(filmDAO.findById(Film._ID_PERSON, p.getId()));
-                    Collections.sort(films);
-
-                    list.setAdapter(new FilmAdapter(this, R.layout.film, films));
-                    filmsView.setVisibility(View.VISIBLE);
-                } finally {
-                    filmDAO.close();
-                }
+                configTabs(i);
             }
         } else {
             characterView.setVisibility(View.INVISIBLE);
-            filmsView.setVisibility(View.INVISIBLE);
+            tabhost.setVisibility(View.INVISIBLE);
             showMessageShort(R.string.character_not_found);
             qrcode();
         }
+    }
+
+    private void configTabs(Intent i) {
+        Bundle options = i.getExtras();
+        tabhost.clearAllTabs();
+        tabhost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
+        tabhost.addTab(tabhost.newTabSpec("films")
+                .setIndicator(getString(R.string.films)), FilmsListFragment_.class, options);
+        tabhost.addTab(tabhost.newTabSpec("location")
+                .setIndicator(getString(R.string.my_location)), SupportMapFragment.class, options);
+        tabhost.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -158,7 +163,7 @@ public class CharacterActivity extends AppCompatActivity {
                                 getString(R.string.app_name),
                                 getString(R.string.loading),
                                 Boolean.TRUE);
-                        Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                        Barcode barcode = data.getParcelableExtra(BarcodeCapture.OBJECT);
                         Log.i("barcode", barcode.displayValue);
 
                         Bundle extras = new Bundle();

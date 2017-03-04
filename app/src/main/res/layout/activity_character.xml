@@ -33,6 +33,7 @@
             android:stretchColumns="1">
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_height" />
@@ -43,6 +44,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_mass" />
@@ -53,6 +55,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_hair" />
@@ -63,6 +66,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_skin" />
@@ -73,6 +77,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_eyes" />
@@ -83,6 +88,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_birth_year" />
@@ -93,6 +99,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_gender" />
@@ -103,6 +110,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     style="@style/TableColumnLabel"
                     android:text="@string/character_planet" />
@@ -113,6 +121,7 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     android:id="@+id/url"
                     style="@style/TableColumnValue.Center"
@@ -121,8 +130,8 @@
         </TableLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/filmsView"
+    <android.support.v4.app.FragmentTabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="5dp"
@@ -130,20 +139,22 @@
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
         android:background="@android:drawable/alert_light_frame"
-        android:orientation="vertical"
-        android:visibility="invisible">
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/Base.DialogWindowTitle.AppCompat"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/values"
-            android:textAlignment="center" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v4.app.FragmentTabHost>
 </LinearLayout>

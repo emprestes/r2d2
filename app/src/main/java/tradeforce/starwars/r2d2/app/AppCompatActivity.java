@@ -18,9 +18,9 @@ public abstract class AppCompatActivity extends android.support.v7.app.AppCompat
         startActivity(i);
     }
 
-    protected void startActivityForResult(String action, int requestCode) {
+    protected void startActivityForResult(String action, int requestCode, Bundle options) {
         Intent intent = new Intent(action);
-        startActivityForResult(intent, requestCode);
+        startActivityForResult(intent, requestCode, options);
     }
 
     protected void startService(String action, Bundle options) {

@@ -34,5 +34,18 @@ public interface Controllers {
     interface BarcodeCapture {
         String ACTION = "vision.intent.action.BARCODE";
         int REQUEST_CODE = 200;
+        String AUTO_FOCUS = "AutoFocus";
+        String USE_FLASH = "UseFlash";
+        String OBJECT = "Barcode";
+    }
+
+    interface Films {
+        String ACTION = "starwars.intent.action.FILMS";
+        int REQUEST_CODE = 500;
+    }
+
+    interface Maps {
+        String ACTION = "starwars.intent.action.MAPS";
+        int REQUEST_CODE = 500;
     }
 }
