@@ -11,7 +11,6 @@ import java.util.List;
 import tradeforce.starwars.repository.Entity;
 import tradeforce.starwars.repository.orm.Column;
 import tradeforce.starwars.repository.orm.Id;
-import tradeforce.starwars.repository.orm.OrderByAsc;
 import tradeforce.starwars.repository.orm.Table;
 
 public final class SQLHelper {
@@ -172,26 +171,6 @@ public final class SQLHelper {
             } catch (Exception cause) {
                 throw new RuntimeException(cause);
             }
-        }
-
-        public static String orderByAsc(Class<?> _class) {
-            Field[] fields = _class.getDeclaredFields();
-            Column c;
-            OrderByAsc a;
-
-            for (Field f : fields) {
-                a = f.getAnnotation(OrderByAsc.class);
-
-                if (a != null) {
-                    c = f.getAnnotation(Column.class);
-
-                    if (c != null) {
-                        return c.name() + " ASC";
-                    }
-                }
-            }
-
-            return null;
         }
     }
 }
