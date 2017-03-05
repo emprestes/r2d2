@@ -10,6 +10,19 @@ import tradeforce.starwars.repository.orm.Entity;
 import tradeforce.starwars.repository.orm.Id;
 import tradeforce.starwars.repository.orm.Table;
 
+/**
+ * Classe que representa um personagem do Star Wars.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see Entity
+ * @see Table
+ * @see Id
+ * @see Column
+ * @see tradeforce.starwars.repository.Entity
+ * @see Comparable
+ */
 @Entity
 @Table("personagem")
 public class Person implements tradeforce.starwars.repository.Entity<Long>, Comparable<Person> {
@@ -71,193 +84,414 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
     @Column(name = "dt_hora", nullable = false)
     private Long capturedInMillis;
 
+    /** {@inheritDoc} */
     @Override
     public Long getId() {
         return id;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasId() {
         return getId() != null;
     }
 
+    /**
+     * Recupera o nome do personagem.
+     *
+     * @return Nome do personagem.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Configura o nome do personagem.
+     *
+     * @param name Nome informado.
+     * @return Person
+     */
     public Person setName(String name) {
         this.name = name;
         return this;
     }
 
+    /**
+     * Recupera a altura do personagem.
+     *
+     * @return Altura do personagem.
+     */
     public String getHeight() {
         return height;
     }
 
+    /**
+     * Configura a altura do personagem.
+     *
+     * @param height Altura informada.
+     * @return Person
+     */
     public Person setHeight(String height) {
         this.height = height;
         return this;
     }
 
+    /**
+     * Recupera a massa do personagem.
+     *
+     * @return Massa do personagem.
+     */
     public String getMass() {
         return mass;
     }
 
+    /**
+     * Configura massa do personagem.
+     *
+     * @param mass Massa informada.
+     * @return Person
+     */
     public Person setMass(String mass) {
         this.mass = mass;
         return this;
     }
 
+    /**
+     * Recupera a cor do cabelo do personagem.
+     *
+     * @return Cor do cabelo do personagem.
+     */
     public String getHair_color() {
         return hair_color;
     }
 
+    /**
+     * Configura cor do cabelo do personagem.
+     *
+     * @param hair_color Cor do cabelo informado.
+     * @return Person
+     */
     public Person setHair_color(String hair_color) {
         this.hair_color = hair_color;
         return this;
     }
 
+    /**
+     * Recupera cor da pele do personagem.
+     *
+     * @return Cor da pele do personagem.
+     */
     public String getSkin_color() {
         return skin_color;
     }
 
+    /**
+     * Configura cor da pele do personagem.
+     *
+     * @param skin_color Cor da pele informado.
+     * @return Person
+     */
     public Person setSkin_color(String skin_color) {
         this.skin_color = skin_color;
         return this;
     }
 
+    /**
+     * Recupera cor dos olhos do personagem.
+     *
+     * @return Cor dos olhos do personagem.
+     */
     public String getEye_color() {
         return eye_color;
     }
 
+    /**
+     * Configura cor dos olhos do personagem.
+     *
+     * @param eye_color Cor dos olhos informado.
+     * @return Person
+     */
     public Person setEye_color(String eye_color) {
         this.eye_color = eye_color;
         return this;
     }
 
+    /**
+     * Recupera o ano de nascimento do personagem.
+     *
+     * @return Ano do nascimento do personagem.
+     */
     public String getBirth_year() {
         return birth_year;
     }
 
+    /**
+     * Configura o ano de nascimento do personagem.
+     *
+     * @param birth_year Ano do nascimento informado.
+     * @return Person
+     */
     public Person setBirth_year(String birth_year) {
         this.birth_year = birth_year;
         return this;
     }
 
+    /**
+     * Recupera o gênero do personagem.
+     *
+     * @return Gênero do personagem.
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     * Configura o gênero do personagem.
+     *
+     * @param gender Gênero informado.
+     * @return Person
+     */
     public Person setGender(String gender) {
         this.gender = gender;
         return this;
     }
 
+    /**
+     * Recupera o mundo natal do personagem.
+     *
+     * @return Mundo natal do personagem.
+     */
     public String getHomeworld() {
         return homeworld;
     }
 
+    /**
+     * Configura o mundo natal do personagem.
+     *
+     * @param homeworld Mundo natal informado.
+     * @return Person
+     */
     public Person setHomeworld(String homeworld) {
         this.homeworld = homeworld;
         return this;
     }
 
+    /**
+     * Recupera os filmes do personagem.
+     *
+     * @return Filmes do personagem.
+     */
     public List<String> getFilms() {
         return films;
     }
 
+    /**
+     * Configura os filmes do personagem.
+     *
+     * @param films Filmes informados.
+     * @return Person
+     */
     public Person setFilms(List<String> films) {
         this.films = films;
         return this;
     }
 
+    /**
+     * Recupera as espécies do personagem.
+     *
+     * @return Espécies do personagem.
+     */
     public List<String> getSpecies() {
         return species;
     }
 
+    /**
+     * Configura as espécies do personagem.
+     *
+     * @param species Espécies informada.
+     * @return Person
+     */
     public Person setSpecies(List<String> species) {
         this.species = species;
         return this;
     }
 
+    /**
+     * Recupera os veículos do personagem.
+     *
+     * @return Veículos do personagem.
+     */
     public List<String> getVehicles() {
         return vehicles;
     }
 
+    /**
+     * Configura os veículos do personagem.
+     *
+     * @param vehicles Veículos informada.
+     * @return Person
+     */
     public Person setVehicles(List<String> vehicles) {
         this.vehicles = vehicles;
         return this;
     }
 
+    /**
+     * Recupera as espaço naves do personagem.
+     *
+     * @return Espaço naves do personagem.
+     */
     public List<String> getStarships() {
         return starships;
     }
 
+    /**
+     * Configura as espaço naves do personagem.
+     *
+     * @param starships Espaço naves informada.
+     * @return Person
+     */
     public Person setStarships(List<String> starships) {
         this.starships = starships;
         return this;
     }
 
+    /**
+     * Recupera a data de criação do personagem.
+     *
+     * @return Data de criação do personagem.
+     */
     public String getCreated() {
         return created;
     }
 
+    /**
+     * Configura a data de criação do personagem.
+     *
+     * @param created Data de criação informada.
+     * @return Person
+     */
     public Person setCreated(String created) {
         this.created = created;
         return this;
     }
 
+    /**
+     * Recupera a data de edição do personagem.
+     *
+     * @return Data de edição informada.
+     */
     public String getEdited() {
         return edited;
     }
 
+    /**
+     * Configura a data de edição do personagem.
+     *
+     * @param edited Data de edição informada.
+     * @return Person
+     */
     public Person setEdited(String edited) {
         this.edited = edited;
         return this;
     }
 
+    /**
+     * Recupera a latitude da captura do personagem.
+     *
+     * @return Latitude de captura do personagem.
+     */
     public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    /**
+     * Configura a latitude da captura do personagem.
+     *
+     * @param latitude Latitude de captura informada.
+     * @return Person
+     */
+    public Person setLatitude(Double latitude) {
         this.latitude = latitude;
+        return this;
     }
 
+    /**
+     * Recupera a longitude da captura do personagem.
+     *
+     * @return Longitude de captura do personagem.
+     */
     public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    /**
+     * Configura a longitude da captura do personagem.
+     *
+     * @param longitude Longitude de captura informada.
+     * @return Person
+     */
+    public Person setLongitude(Double longitude) {
         this.longitude = longitude;
+        return this;
     }
 
+    /**
+     * Recupera a data da captura do personagem.
+     *
+     * @return Data de captura do personagem em millis.
+     */
     public Long getCapturedInMillis() {
         return capturedInMillis;
     }
 
+    /**
+     * Recupera a data da captura do personagem.
+     *
+     * @return Data de captura do personagem.
+     */
     public Date getCapturedDate() {
         return new Date(capturedInMillis);
     }
 
-    public void setCapturedInMillis(Long capturedInMillis) {
+    /**
+     * Configura a data da captura do personagem.
+     *
+     * @param capturedInMillis a data da captura informada.
+     * @return Person
+     */
+    public Person setCapturedInMillis(Long capturedInMillis) {
         this.capturedInMillis = capturedInMillis;
+        return this;
     }
 
+    /**
+     * Recupera a url do personagem.
+     *
+     * @return URL do personagem.
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Configura a URL do personagem.
+     *
+     * @param url URL informada.
+     * @return Person
+     */
     public Person setUrl(String url) {
         this.url = url;
         return this;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -299,6 +533,7 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
 
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         int result = getName() != null ? getName().hashCode() : 0;
@@ -320,11 +555,13 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int compareTo(Person o) {
         return getName().compareTo(o.getName());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void finalize() throws Throwable {
         name = null;
@@ -347,6 +584,7 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
         super.finalize();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)

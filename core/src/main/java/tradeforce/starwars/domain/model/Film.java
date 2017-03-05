@@ -9,11 +9,27 @@ import tradeforce.starwars.repository.orm.Entity;
 import tradeforce.starwars.repository.orm.Id;
 import tradeforce.starwars.repository.orm.Table;
 
+/**
+ * Classe que representa um filme do Star Wars.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see Entity
+ * @see Table
+ * @see Id
+ * @see Column
+ * @see tradeforce.starwars.repository.Entity
+ * @see Comparable
+ */
 @Entity
 @Table("filme")
 public class Film implements tradeforce.starwars.repository.Entity<Long>, Comparable<Film> {
 
+    /** Constante de ID do filme. */
     public static final String _ID_FILM = "id_filme";
+
+    /** Constante de ID do personagem. */
     public static final String _ID_PERSON = "id_personagem";
 
     @Id
@@ -59,163 +75,345 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
     @Column(name = "ds_url", nullable = false)
     private String url;
 
+    /** {@inheritDoc} */
     @Override
     public Long getId() {
         return id;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasId() {
         return getId() != null;
     }
 
+    /**
+     * Recupera o ID do filme.
+     *
+     * @return ID do filme.
+     */
     public Long getIdFilm() {
         return idFilm;
     }
 
-    public void setIdFilm(Long idFilm) {
+    /**
+     * Configura ID do filme.
+     *
+     * @param idFilm ID do filme informado.
+     * @return Film
+     */
+    public Film setIdFilm(Long idFilm) {
         this.idFilm = idFilm;
+        return this;
     }
 
+    /**
+     * Recupera o ID do personagem do filme.
+     *
+     * @return ID do personagem do filme.
+     */
     public Long getIdPerson() {
         return idPerson;
     }
 
-    public void setIdPerson(Long idPerson) {
+    /**
+     * Configura ID do personagem do filme.
+     *
+     * @param idPerson ID do personagem informado.
+     * @return Film
+     */
+    public Film setIdPerson(Long idPerson) {
         this.idPerson = idPerson;
+        return this;
     }
 
+    /**
+     * Recupera o título do filme.
+     *
+     * @return Título do filme.
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Configura título do filme.
+     *
+     * @param title Título informada.
+     * @return Film
+     */
     public Film setTitle(String title) {
         this.title = title;
         return this;
     }
 
+    /**
+     * Recupera o episódio do filme.
+     *
+     * @return Episódio do filme.
+     */
     public String getEpisode_id() {
         return episode_id;
     }
 
+    /**
+     * Configura episódio do filme.
+     *
+     * @param episode_id Episódio informada.
+     * @return Film
+     */
     public Film setEpisode_id(String episode_id) {
         this.episode_id = episode_id;
         return this;
     }
 
+    /**
+     * Recupera a triagem do filme.
+     *
+     * @return Triagem do filme.
+     */
     public String getOpening_crawl() {
         return opening_crawl;
     }
 
+    /**
+     * Configura triagem do filme.
+     *
+     * @param opening_crawl Triagem informada.
+     * @return Film
+     */
     public Film setOpening_crawl(String opening_crawl) {
         this.opening_crawl = opening_crawl;
         return this;
     }
 
+    /**
+     * Recupera o diretor do filme.
+     *
+     * @return Diretor do filme.
+     */
     public String getDirector() {
         return director;
     }
 
+    /**
+     * Configura diretor do filme.
+     *
+     * @param director Diretor informado.
+     * @return Film
+     */
     public Film setDirector(String director) {
         this.director = director;
         return this;
     }
 
+    /**
+     * Recupera o produtor do filme.
+     *
+     * @return Produtor do filme.
+     */
     public String getProducer() {
         return producer;
     }
 
+    /**
+     * Configura produtor do filme.
+     *
+     * @param producer Produtor informado.
+     * @return Film
+     */
     public Film setProducer(String producer) {
         this.producer = producer;
         return this;
     }
 
+    /**
+     * Recupera a data de lançamento do filme.
+     *
+     * @return Data de lançamento do filme.
+     */
     public String getRelease_date() {
         return release_date;
     }
 
+    /**
+     * Configura a data de lançamento do filme.
+     *
+     * @param release_date Data de lançamento informada.
+     * @return Film
+     */
     public Film setRelease_date(String release_date) {
         this.release_date = release_date;
         return this;
     }
 
+    /**
+     * Recupera os personagens do filme.
+     *
+     * @return Personagens do filme.
+     */
     public List<String> getCharacters() {
         return characters;
     }
 
+    /**
+     * Configura os personagens do filme.
+     *
+     * @param characters Personagens informados.
+     * @return Film
+     */
     public Film setCharacters(List<String> characters) {
         this.characters = characters;
         return this;
     }
 
+    /**
+     * Recupera os planetas do filme.
+     *
+     * @return Planetas do filme.
+     */
     public List<String> getPlanets() {
         return planets;
     }
 
+    /**
+     * Configura os planetas do filme.
+     *
+     * @param planets Planetas informados.
+     * @return Film
+     */
     public Film setPlanets(List<String> planets) {
         this.planets = planets;
         return this;
     }
 
+    /**
+     * Recupera as espaço naves do filme.
+     *
+     * @return Espaço naves do filme.
+     */
     public List<String> getStarships() {
         return starships;
     }
 
+    /**
+     * Configura as espaço naves do filme.
+     *
+     * @param starships Espaço naves informada.
+     * @return Film
+     */
     public Film setStarships(List<String> starships) {
         this.starships = starships;
         return this;
     }
 
+    /**
+     * Recupera os veículos do filme.
+     *
+     * @return Veículos do filme.
+     */
     public List<String> getVehicles() {
         return vehicles;
     }
 
+    /**
+     * Configura os veículos do filme.
+     *
+     * @param vehicles Veículos filme.
+     * @return Film
+     */
     public Film setVehicles(List<String> vehicles) {
         this.vehicles = vehicles;
         return this;
     }
 
+    /**
+     * Recupera as espécies do filme.
+     *
+     * @return Espécies do filme.
+     */
     public List<String> getSpecies() {
         return species;
     }
 
+    /**
+     * Configura as espécies do filme.
+     *
+     * @param species Espécies informada.
+     * @return Film
+     */
     public Film setSpecies(List<String> species) {
         this.species = species;
         return this;
     }
 
+    /**
+     * Recupera a data de criação do filme.
+     *
+     * @return Data de criação do filme.
+     */
     public String getCreated() {
         return created;
     }
 
+    /**
+     * Configura a data de criação do filme.
+     *
+     * @param created Data de criação informada.
+     * @return Film
+     */
     public Film setCreated(String created) {
         this.created = created;
         return this;
     }
 
+    /**
+     * Recupera a data de edição do filme.
+     *
+     * @return Data de edição informada.
+     */
     public String getEdited() {
         return edited;
     }
 
+    /**
+     * Configura a data de edição do personagem.
+     *
+     * @param edited Data de edição informada.
+     * @return Film
+     */
     public Film setEdited(String edited) {
         this.edited = edited;
         return this;
     }
 
+    /**
+     * Recupera a url do personagem.
+     *
+     * @return URL do personagem.
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Configura a URL do personagem.
+     *
+     * @param url URL informada.
+     * @return Film
+     */
     public Film setUrl(String url) {
         this.url = url;
         return this;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -258,6 +456,7 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
 
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         int result = getId() != null ? getId().hashCode() : 0;
@@ -280,11 +479,13 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int compareTo(Film o) {
         return getEpisode_id().compareTo(o.getEpisode_id());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void finalize() throws Throwable {
         id = null;
@@ -308,6 +509,7 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
         super.finalize();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
