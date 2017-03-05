@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -37,15 +38,27 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             return Long.valueOf(url);
         }
 
-        return 0L;
+        return null;
     }
 
     public static <E extends Entity> ReadableDAO<E> getDAOReadable(Context context, Class<E> model) {
-        return new ReadableDAO(context, model);
+        return getDAOReadable(context, model, false);
+    }
+
+    public static <E extends Entity> ReadableDAO<E> getDAOReadable(Context context, Class<E> model, boolean debugLog) {
+        ReadableDAO<E> dao = new ReadableDAO(context, model);
+        dao.logData(debugLog);
+        return dao;
     }
 
     public static <E extends Entity> WritableDAO<E> getDAOWritable(Context context, Class<E> model) {
-        return new WritableDAO(context, model);
+        return getDAOWritable(context, model, false);
+    }
+
+    public static <E extends Entity> WritableDAO<E> getDAOWritable(Context context, Class<E> model, boolean debugLog) {
+        WritableDAO<E> dao = new WritableDAO(context, model);
+        dao.logData(debugLog);
+        return  dao;
     }
 
     @Override
@@ -83,9 +96,35 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         public void close() {
             db.close();
         }
+
+        void logData(boolean debug) {
+            if (debug) {
+                Cursor c = db.query(table, null, null, null, null, null, null);
+
+                try {
+                    Log.d("sql.table", table);
+                    StringBuilder row = new StringBuilder("\n| ");
+                    String[] columns = c.getColumnNames();
+                    for (String col : c.getColumnNames()) {
+                        row.append(col).append(" | ");
+                    }
+                    row.append('\n').append('-').append('\n');
+                    while (c.moveToNext()) {
+                        for (int i = 0; i < columns.length; i++) {
+                            row.append("| ").append(c.getString(i)).append(' ');
+                        }
+                        row.append('\n');
+                    }
+                    row.append('-');
+                    Log.d("sql.data", row.toString());
+                } finally {
+                    c.close();
+                }
+            }
+        }
     }
 
-    public static class ReadableDAO<E extends Entity> extends DAO<E> implements AutoCloseable {
+    public static class ReadableDAO<E extends Entity> extends DAO<E> {
 
         String[] columns;
 
@@ -177,10 +216,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             set = new TreeSet<>();
             c = db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy);
             try {
-                E relationship;
+                E entity;
                 while (c.moveToNext()) {
-                    relationship = createInstance(c, model);
-                    set.add(relationship);
+                    entity = createInstance(c, model);
+                    set.add(entity);
                 }
             } finally {
                 c.close();
@@ -212,9 +251,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             }
 
             if (!isUpdated) {
-                Long id = db.insert(table, null, values);
-
-                entity.setId(id);
+                db.insert(table, null, values);
             }
         }
 
