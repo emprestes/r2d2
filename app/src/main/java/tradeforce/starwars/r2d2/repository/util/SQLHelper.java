@@ -13,10 +13,27 @@ import tradeforce.starwars.repository.orm.Column;
 import tradeforce.starwars.repository.orm.Id;
 import tradeforce.starwars.repository.orm.Table;
 
+/**
+ * Helper que representa informações de SQL para uso em banco de dados.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ */
 public final class SQLHelper {
 
+    /**
+     * Classe que representa informações de definição de tabelas em banco de dados.
+     *
+     * @author Prestes, E. M.
+     * @since Março de 2017
+     */
     public static class DDL {
 
+        /**
+         * Cria SQL de entidade para criação de tabela em banco de dados.
+         * @param _class Classe da entidade.
+         * @return SQL para criação de tabela.
+         */
         public static String createEntity(Class<? extends Entity> _class) {
             final tradeforce.starwars.repository.orm.Entity e;
             final Table t;
@@ -84,8 +101,21 @@ public final class SQLHelper {
         }
     }
 
+    /**
+     * Classe que representa informações de manipulação de dados em tabelas de banco de dados.
+     *
+     * @author Prestes, E. M.
+     * @since Março de 2017
+     */
     public static class MDL {
 
+        /**
+         * Recupera os valores em ContantValues da instância do modelo de entidade.
+         *
+         * @param model Modelo de entidade.
+         *
+         * @return ContentValues
+         */
         public static ContentValues getValues(Object model) {
             try {
                 final ContentValues cv = new ContentValues();
@@ -123,15 +153,35 @@ public final class SQLHelper {
             }
         }
 
+        /**
+         * Recupera o nome da tabela do banco de dados em acordo ao modelo informado.
+         *
+         * @param model Modelo informado.
+         * @return Nome da tabela
+         */
         public static String getTableName(Object model) {
             return getTableName(model.getClass());
         }
 
+        /**
+         * Recupera o nome da tabela do banco de dados em acordo à classe do modelo informado.
+         *
+         * @param _class Classe do modelo informado.
+         * @return Nome da tabela
+         */
         public static String getTableName(Class<?> _class) {
             Table t = _class.getAnnotation(Table.class);
             return t != null ? t.value() : null;
         }
 
+        /**
+         * Cria uma instância de modelo em acordo a classe informada e preenchida pelo cursor informado.
+         *
+         * @param c Cursor informado.
+         * @param _class Classe do modelo informada.
+         * @param <M> Tipo do modelo.
+         * @return Instância do modelo com estado definido.
+         */
         public static <M> M createInstance(Cursor c, Class<?> _class) {
             try {
                 M model = (M) _class.newInstance();

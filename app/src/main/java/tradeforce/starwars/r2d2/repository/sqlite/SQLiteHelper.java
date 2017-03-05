@@ -19,12 +19,26 @@ import static tradeforce.starwars.r2d2.repository.util.SQLHelper.MDL.createInsta
 import static tradeforce.starwars.r2d2.repository.util.SQLHelper.MDL.getTableName;
 import static tradeforce.starwars.r2d2.repository.util.SQLHelper.MDL.getValues;
 
+/**
+ * OpenHelper para uso do SQLite.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see SQLiteOpenHelper
+ */
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     private SQLiteHelper(Context context) {
         super(context, "starwars.db", null, 1);
     }
 
+    /**
+     * Recupera o id da url informada.
+     *
+     * @param url URL informada.
+     * @return ID recuperado. NULL caso não encontrado.
+     */
     public static Long recoveryId(String url) {
         if (url != null && !url.isEmpty()) {
             int index = url.lastIndexOf('/');
@@ -41,36 +55,70 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    /**
+     * Recupera DAO para leitura de banco de dados.
+     *
+     * @param context Contexto Android informado.
+     * @param model Classe da entidade de modelo que será lida (tabela).
+     * @param <E> Tipo da entidade de modelo.
+     * @return DAO para leitura.
+     */
     public static <E extends Entity> ReadableDAO<E> getDAOReadable(Context context, Class<E> model) {
         return getDAOReadable(context, model, false);
     }
 
+    /**
+     * Recupera DAO para leitura de banco de dados.
+     *
+     * @param context Contexto Android informado.
+     * @param model Classe da entidade de modelo que será lida (tabela).
+     * @param <E> Tipo da entidade de modelo.
+     * @param debugLog Flag para debug em log do conteúdo da entidade informada em tabela.
+     * @return DAO para leitura.
+     */
     public static <E extends Entity> ReadableDAO<E> getDAOReadable(Context context, Class<E> model, boolean debugLog) {
         ReadableDAO<E> dao = new ReadableDAO(context, model);
         dao.logData(debugLog);
         return dao;
     }
 
+    /**
+     * Recupera DAO para escrita de banco de dados.
+     *
+     * @param context Contexto Android informado.
+     * @param model Classe da entidade de modelo que será lida (tabela).
+     * @param <E> Tipo da entidade de modelo.
+     * @return DAO para escrita.
+     */
     public static <E extends Entity> WritableDAO<E> getDAOWritable(Context context, Class<E> model) {
         return getDAOWritable(context, model, false);
     }
 
+    /**
+     * Recupera DAO para escrita de banco de dados.
+     *
+     * @param context Contexto Android informado.
+     * @param model Classe da entidade de modelo que será lida (tabela).
+     * @param <E> Tipo da entidade de modelo.
+     * @param debugLog Flag para debug em log do conteúdo da entidade informada em tabela.
+     * @return DAO para escrita.
+     */
     public static <E extends Entity> WritableDAO<E> getDAOWritable(Context context, Class<E> model, boolean debugLog) {
         WritableDAO<E> dao = new WritableDAO(context, model);
         dao.logData(debugLog);
         return  dao;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createEntity(Person.class));
         db.execSQL(createEntity(Film.class));
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { }
 
     private abstract static class DAO<E extends Entity> {
 
@@ -124,6 +172,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Classe para representar um DAO para leitura de banco de dados.
+     * @param <E> Tipo de entidade informado.
+     */
     public static class ReadableDAO<E extends Entity> extends DAO<E> {
 
         String[] columns;
@@ -150,6 +202,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             orderBy = null;
         }
 
+        /**
+         * Recupera uma entidade do banco de dados em acordo ao ID informado.
+         *
+         * @param _id ID informado.
+         * @return Entidade encontrada. NULL caso não encontrado.
+         */
         public E getOne(Long _id) {
             Cursor c;
             E e;
@@ -169,6 +227,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             return e;
         }
 
+        /**
+         * Recupera uma entidade do banco de dados em acordo ao critério informado.
+         *
+         * @param key Nome do campo a pesquisar.
+         * @param value Valor a ser encontrado.
+         * @return Entidade encontrada. NULL caso não encontrado.
+         */
         public E get(String key, String value) {
             Cursor c;
             E e;
@@ -188,6 +253,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             return e;
         }
 
+        /**
+         * Procura todas as entidades da tabela.
+         *
+         * @return Conjunto de entidades.
+         */
         public Set<E> findAll() {
             Cursor c;
             Set<E> set;
@@ -207,6 +277,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             return set;
         }
 
+        /**
+         * Procura por ID informado.
+         *
+         * @param key Nome do campo a pesquisar.
+         * @param id ID informado.
+         * @return Entidade encontrada. Conjunto vazio caso não encontrado.
+         */
         public Set<E> findById(String key, Long id) {
             Cursor c;
             Set<E> set;
@@ -229,6 +306,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Classe para representar um DAO para escrita de banco de dados.
+     * @param <E> Tipo de entidade informado.
+     */
     public static class WritableDAO<E extends Entity> extends ReadableDAO<E> {
 
         WritableDAO(Context context, Class<E> model) {
@@ -237,6 +318,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             db = sqlite.getWritableDatabase();
         }
 
+        /**
+         * Salva uma entidade em banco de dados.
+         *
+         * @param entity Entidade informada.
+         */
         public void save(E entity) {
             final ContentValues values = getValues(entity);
             boolean isUpdated;
@@ -255,6 +341,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             }
         }
 
+        /**
+         * Apaga entidade(s) do banco de dados.
+         *
+         * @param key Nome do campo informado.
+         * @param value Valor do campo informado.
+         */
         public void delete(String key, Object value) {
             if (value != null) {
                 String whereClause = String.format(" %s = ? ", key);
@@ -264,7 +356,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             }
         }
 
-        public <E extends Entity> void delete(E entity) {
+        /**
+         * Apaga entidade(s) do banco de dados.
+         *
+         * @param entity Entidade a ser apagada informada.
+         */
+        public void delete(E entity) {
             if (entity.hasId()) {
                 String whereClause = " _ID = ? ";
                 String[] whereArgs = {entity.getId().toString()};
@@ -273,6 +370,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             }
         }
 
+        /**
+         * Apaga todas as entidades de uma tabela.
+         */
         public void deleteAll() {
             db.delete(table, null, null);
         }
