@@ -4,6 +4,16 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
+/**
+ * Adapter usado como listener para localização de GPS.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see LocationListener
+ * @see Location
+ * @see Bundle
+ */
 public class LocationAdapter implements LocationListener {
 
     @Override
