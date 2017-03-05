@@ -28,6 +28,16 @@ import tradeforce.starwars.r2d2.view.animation.AnimationAdapter;
 import static tradeforce.starwars.r2d2.controller.Controllers.BarcodeCapture;
 import static tradeforce.starwars.r2d2.controller.Controllers.Character;
 
+/**
+ * Classe de controller para a tela do R2D2.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see AppCompatActivity
+ * @see EActivity
+ * @see OptionsMenu
+ */
 @EActivity(R.layout.activity_r2d2)
 @OptionsMenu(R.menu.r2d2)
 public class R2D2Activity extends AppCompatActivity {
@@ -42,6 +52,9 @@ public class R2D2Activity extends AppCompatActivity {
     @SystemService
     WindowManager wm;
 
+    /**
+     * Inicializa componentes visuais.
+     */
     @AfterViews
     void init() {
         Display d = wm.getDefaultDisplay();
@@ -63,6 +76,9 @@ public class R2D2Activity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Animação de R2D2 entrando em cena.
+     */
     @Click(R.id.r2d2)
     void click() {
         r2d2.clearAnimation();
@@ -95,6 +111,9 @@ public class R2D2Activity extends AppCompatActivity {
         }, 2950);
     }
 
+    /**
+     * Acessa captura por QRCode.
+     */
     @Click
     @OptionsItem
     void qrcode() {
@@ -105,6 +124,9 @@ public class R2D2Activity extends AppCompatActivity {
         startActivity(Character.ACTION, options);
     }
 
+    /**
+     * Acessa lista de personagens
+     */
     @Click
     @OptionsItem
     void list() {
@@ -112,11 +134,17 @@ public class R2D2Activity extends AppCompatActivity {
         startActivity(Character.List.ACTION);
     }
 
+    /**
+     * Reproduz voz de R2D2 quando toque na tela em retrato.
+     */
     @Click(R.id.r2d2_hey)
     void sayR2D2() {
         MediaPlayer.create(this, R.raw.r2d2_hey_you).start();
     }
 
+    /**
+     * Reproduz voz de personagem quando toque na tela em paisagem.
+     */
     @Click(R.id.poster)
     void say() {
         int id = (int) (1 + Math.random() * 4);
@@ -127,6 +155,7 @@ public class R2D2Activity extends AppCompatActivity {
         MediaPlayer.create(this, id).start();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onBackPressed() {
         stopSound();
@@ -134,12 +163,16 @@ public class R2D2Activity extends AppCompatActivity {
         finish();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onPause() {
         stopSound();
         super.onPause();
     }
 
+    /**
+     * Para o som quando tocando.
+     */
     private void stopSound() {
         if (mp != null && mp.isPlaying()) {
             mp.stop();

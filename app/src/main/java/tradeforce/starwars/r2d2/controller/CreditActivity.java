@@ -15,6 +15,15 @@ import org.androidannotations.annotations.ViewById;
 import tradeforce.starwars.r2d2.R;
 import tradeforce.starwars.r2d2.app.AppCompatActivity;
 
+/**
+ * Classe de controller para a tela de crédito.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see AppCompatActivity
+ * @see EActivity
+ */
 @EActivity(R.layout.activity_credit)
 public class CreditActivity extends AppCompatActivity {
 
@@ -24,6 +33,9 @@ public class CreditActivity extends AppCompatActivity {
     @ViewById
     VideoView video;
 
+    /**
+     * Inicialização dos componentes visuais.
+     */
     @AfterViews
     void init() {
         MediaPlayer.create(this, R.raw.bb8_001).start();
@@ -53,17 +65,22 @@ public class CreditActivity extends AppCompatActivity {
         }, 5000L);
     }
 
+    /**
+     * Toque no video para explicar como pará-lo.
+     */
     @Touch
     void video() {
         MediaPlayer.create(this, R.raw.bb8_002).start();
         showMessageShort(R.string.exit_press_back);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onBackPressed() {
         finish();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void finish() {
         int id;
@@ -91,7 +108,5 @@ public class CreditActivity extends AppCompatActivity {
             }
         });
         mp.start();
-
-        setVisible(Boolean.TRUE);
     }
 }

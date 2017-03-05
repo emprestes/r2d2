@@ -2,7 +2,6 @@ package tradeforce.starwars.r2d2.controller;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -77,6 +76,9 @@ public class SplashActivity extends AppCompatActivity {
     private boolean mVisible, isClicked;
     private final Runnable mHideRunnable = this::hide;
 
+    /**
+     * Inicializa componentes visuais da tela.
+     */
     @AfterViews
     void init() {
         mVisible = true;
@@ -95,6 +97,7 @@ public class SplashActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -117,6 +120,9 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Entra no app R2D2.
+     */
     @Click(R.id.enter)
     void button() {
         if (AUTO_HIDE) {
@@ -127,6 +133,9 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(Controllers.R2D2.ACTION);
     }
 
+    /**
+     * Exibe ou Oculta informações na tela.
+     */
     @Touch(R.id.fullscreen_content)
     void toggle() {
         if (mVisible) {
@@ -136,6 +145,9 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Escolhe vídeo de abertura do APP.
+     */
     private void initIntro() {
         int id;
 
@@ -153,6 +165,7 @@ public class SplashActivity extends AppCompatActivity {
         mContentView.start();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -198,6 +211,7 @@ public class SplashActivity extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onBackPressed() {
         mContentView.pause();

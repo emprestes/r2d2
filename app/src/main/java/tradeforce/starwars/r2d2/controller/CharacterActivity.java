@@ -31,6 +31,16 @@ import tradeforce.starwars.r2d2.app.AppCompatActivity;
 import static tradeforce.starwars.r2d2.controller.Controllers.BarcodeCapture;
 import static tradeforce.starwars.r2d2.controller.Controllers.Character;
 
+/**
+ * Classe de controller para a tela de personagem.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see AppCompatActivity
+ * @see EActivity
+ * @see OptionsMenu
+ */
 @EActivity(R.layout.activity_character)
 @OptionsMenu(R.menu.character)
 public class CharacterActivity extends AppCompatActivity {
@@ -56,6 +66,9 @@ public class CharacterActivity extends AppCompatActivity {
 
     private SimpleDateFormat sdf;
 
+    /**
+     * Inicializa componentes visuais da tela.
+     */
     @AfterViews
     void init() {
          sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", getResources().getConfiguration().locale);
@@ -75,6 +88,9 @@ public class CharacterActivity extends AppCompatActivity {
         origin = origin == null ? "" : origin;
     }
 
+    /**
+     * Acessa captura de QRCode.
+     */
     @OptionsItem
     void qrcode() {
         MediaPlayer.create(this, R.raw.r2d2_yeah).start();
@@ -84,6 +100,9 @@ public class CharacterActivity extends AppCompatActivity {
         startActivityForResult(BarcodeCapture.ACTION, Character.REQUEST_CODE, options);
     }
 
+    /**
+     * Acessa lista de personagens.
+     */
     @OptionsItem
     void list() {
         MediaPlayer.create(this, R.raw.r2d2_do).start();
@@ -99,6 +118,11 @@ public class CharacterActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Recebe dados salvos no serviço de gravação de personagem.
+     *
+     * @param i Intent informado.
+     */
     @Receiver(actions = Character.ACTION, registerAt = Receiver.RegisterAt.OnResumeOnPause)
     void onReceive(Intent i) {
         try {
@@ -111,6 +135,11 @@ public class CharacterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Configura os dados do personagem na tela.
+     *
+     * @param i Intent informado.
+     */
     private void set(Intent i) {
         final Person p;
 
@@ -141,6 +170,11 @@ public class CharacterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Configura o tabhost.
+     *
+     * @param i Intent informado.
+     */
     private void configTabs(Intent i) {
         Bundle options = i.getExtras();
         tabhost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
@@ -152,6 +186,7 @@ public class CharacterActivity extends AppCompatActivity {
         tabhost.setVisibility(View.VISIBLE);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {

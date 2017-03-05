@@ -23,6 +23,16 @@ import tradeforce.starwars.r2d2.controller.Controllers.Character;
 import tradeforce.starwars.r2d2.repository.sqlite.SQLiteHelper;
 import tradeforce.starwars.r2d2.view.PersonAdapter;
 
+/**
+ * Classe de controller para a tela de lista de personagens.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see AppCompatActivity
+ * @see EActivity
+ * @see OptionsMenu
+ */
 @EActivity(android.R.layout.list_content)
 @OptionsMenu(R.menu.qrcode)
 public class CharacterListActivity extends AppCompatActivity {
@@ -34,6 +44,9 @@ public class CharacterListActivity extends AppCompatActivity {
 
     private int requestCode;
 
+    /**
+     * Inicializa componentes visuais da tela.
+     */
     @AfterViews
     void init() {
         list.setOnItemClickListener((parent, view, position, id) -> {
@@ -50,6 +63,9 @@ public class CharacterListActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Carrega lista de personagens.
+     */
     void load() {
         SQLiteHelper.ReadableDAO<Person> personDAO;
 
@@ -76,6 +92,9 @@ public class CharacterListActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Acesso a captura de QRCode.
+     */
     @OptionsItem
     void qrcode() {
         Bundle options = new Bundle();
@@ -86,6 +105,7 @@ public class CharacterListActivity extends AppCompatActivity {
         startActivity(Character.ACTION, options);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onResume() {
         super.onResume();
@@ -93,6 +113,7 @@ public class CharacterListActivity extends AppCompatActivity {
         load();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onPause() {
         switch (requestCode) {

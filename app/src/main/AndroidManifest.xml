@@ -95,18 +95,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.FilmsListFragment_">
-            <intent-filter>
-                <action android:name="starwars.intent.action.FILMS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".controller.MapsActivity">
-            <intent-filter>
-                <action android:name="starwars.intent.action.MAPS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <service
             android:name=".controller.SaveCharacterService_"

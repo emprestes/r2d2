@@ -12,8 +12,17 @@ import tradeforce.starwars.domain.model.Person;
 import tradeforce.starwars.r2d2.R;
 import tradeforce.starwars.r2d2.controller.Controllers.Character;
 
+/**
+ * Fragment para exibir dados de geolocalização em mapa.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see SupportMapFragment
+ */
 public class LocationMapFragment extends SupportMapFragment {
 
+    /** {@inheritDoc} */
     @Override
     public void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);

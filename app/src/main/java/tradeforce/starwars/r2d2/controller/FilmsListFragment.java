@@ -16,9 +16,19 @@ import tradeforce.starwars.r2d2.R;
 import tradeforce.starwars.r2d2.repository.sqlite.SQLiteHelper;
 import tradeforce.starwars.r2d2.view.FilmAdapter;
 
+/**
+ * Fragment para exibir dados de lista de filmes do personagem.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see ListFragment
+ * @see EFragment
+ */
 @EFragment(value = android.R.layout.list_content, forceLayoutInjection = true)
 public class FilmsListFragment extends ListFragment {
 
+    /** {@inheritDoc} */
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);

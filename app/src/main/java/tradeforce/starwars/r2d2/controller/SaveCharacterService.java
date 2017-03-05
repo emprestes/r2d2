@@ -32,6 +32,16 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 import static tradeforce.starwars.r2d2.controller.Controllers.Character;
 
+/**
+ * Classe de serviço para salvar personagens da Web em base de dados.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see IntentService
+ * @see EIntentService
+ * @see SystemService
+ */
 @EIntentService
 public class SaveCharacterService extends IntentService {
 
@@ -41,6 +51,9 @@ public class SaveCharacterService extends IntentService {
     private SQLiteHelper.WritableDAO<Person> personDAO;
     private SQLiteHelper.WritableDAO<Film> filmDAO;
 
+    /**
+     * Construtor padrão
+     */
     public SaveCharacterService() {
         super(SaveCharacterService.class.getSimpleName());
     }
@@ -56,6 +69,7 @@ public class SaveCharacterService extends IntentService {
     };
     private String provider;
 
+    /** {@inheritDoc} */
     @Override
     public void onCreate() {
         super.onCreate();
@@ -76,6 +90,7 @@ public class SaveCharacterService extends IntentService {
         locationManager.requestLocationUpdates(provider, MIN_TIME, MIN_DISTANCE, locationListener);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onDestroy() {
         if (locationManager != null)
@@ -86,6 +101,7 @@ public class SaveCharacterService extends IntentService {
         super.onDestroy();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onHandleIntent(Intent intent) {
         CharacterEndpoint endpoint;
@@ -172,19 +188,5 @@ public class SaveCharacterService extends IntentService {
         } finally {
             receiver.sendBroadcast();
         }
-    }
-
-    private void requestLocationUpdates() {
-        int granted = PERMISSION_GRANTED;;
-        String afl = ACCESS_FINE_LOCATION;
-        String acl = ACCESS_COARSE_LOCATION;
-
-        boolean hasNoAccess = ActivityCompat.checkSelfPermission(this, afl) != granted;
-        hasNoAccess = hasNoAccess && ActivityCompat.checkSelfPermission(this, acl) != granted;
-        if (hasNoAccess)
-            return;
-
-        provider = locationManager.getBestProvider(new Criteria(), Boolean.FALSE);
-        locationManager.requestLocationUpdates(provider, MIN_TIME, MIN_DISTANCE, locationListener);
     }
 }
