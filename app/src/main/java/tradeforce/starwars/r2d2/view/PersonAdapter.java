@@ -14,6 +14,16 @@ import java.util.List;
 import tradeforce.starwars.domain.model.Person;
 import tradeforce.starwars.r2d2.R;
 
+/**
+ * Adapter usado para listas de personagens na tela.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see BaseAdapter
+ * @see Collection
+ * @see Context
+ */
 public class PersonAdapter extends BaseAdapter {
 
     private final List<Person> values;
@@ -22,6 +32,13 @@ public class PersonAdapter extends BaseAdapter {
 
     private final int idRowLayout;
 
+    /**
+     * Construtor do adapter.
+     *
+     * @param context Contexto do Android informado.
+     * @param idRowLayout ID do resource layout informado.
+     * @param values Coleção de personagens informados.
+     */
     public PersonAdapter(Context context, int idRowLayout, Collection<Person> values) {
         super();
 
@@ -31,21 +48,25 @@ public class PersonAdapter extends BaseAdapter {
         this.idRowLayout = idRowLayout;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getCount() {
         return values.size();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Object getItem(int position) {
         return values.get(position);
     }
 
+    /** {@inheritDoc} */
     @Override
     public long getItemId(int position) {
         return values.get(position).getId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Person p = values.get(position);
