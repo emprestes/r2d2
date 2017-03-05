@@ -11,6 +11,12 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.pressBack;
 
+/**
+ * Classe para teste de inftrumentação usando espresso framework.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AccessTest {
@@ -18,6 +24,9 @@ public class AccessTest {
     @Rule
     public ActivityTestRule<SplashActivity_> mActivityTestRule = new ActivityTestRule<>(SplashActivity_.class);
 
+    /**
+     * Teste de acesso e saída do APP.
+     */
     @Test
     public void accessTest() {
         // Added a sleep statement to match the app's execution delay.

@@ -2,12 +2,28 @@ package tradeforce.starwars.domain.model;
 
 import junitx.extensions.EqualsHashCodeTestCase;
 
+/**
+ * Classe para teste unitário de igualdade e identidade de personagens.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ * @see EqualsHashCodeTestCase
+ * @see Exception
+ * @see Person
+ */
 public class PersonEqualsHashCodeTest extends EqualsHashCodeTestCase {
 
+    /**
+     * Construtor informando um nome.
+     *
+     * @param name Nome informado.
+     */
     public PersonEqualsHashCodeTest(String name) {
         super(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Object createInstance() throws Exception {
         return new Person()
@@ -25,6 +41,7 @@ public class PersonEqualsHashCodeTest extends EqualsHashCodeTestCase {
                 .setUrl("person1");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Object createNotEqualInstance() throws Exception {
         return new Person()
