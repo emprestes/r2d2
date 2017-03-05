@@ -7,6 +7,13 @@ import android.os.Bundle;
 
 import java.io.Serializable;
 
+/**
+ * Helper para manipular receivers.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
+ */
 public final class ReceiverHelper {
 
     private Intent i;
@@ -19,51 +26,38 @@ public final class ReceiverHelper {
         this.c = c;
     }
 
-    private ReceiverHelper(Context c, Class<? extends BroadcastReceiver> _class) {
-        this(c);
-
-        this.i = new Intent(this.c, _class);
-    }
-
     private ReceiverHelper(Context c, String action) {
         this(c);
 
         this.i = new Intent(action);
     }
 
+    /**
+     * Prepara o helper para um novo receiver.
+     *
+     * @param context Contexto Android informado.
+     * @param action Ação a ser chamada.
+     * @return Helper
+     */
     public static ReceiverHelper prepare(Context context, String action) {
         return new ReceiverHelper(context, action);
     }
 
-    public static ReceiverHelper prepare(Context context, Class<? extends BroadcastReceiver> _class) {
-        return new ReceiverHelper(context, _class);
-    }
-
-    public ReceiverHelper putExtra(String key, Object tag) {
-        putExtra(key, (Serializable) tag);
-        return this;
-    }
-
-    public ReceiverHelper putExtra(String key, boolean value) {
-        i.putExtra(key, value);
-        return this;
-    }
-
-    public ReceiverHelper putExtra(String key, Bundle value) {
-        i.putExtra(key, value);
-        return this;
-    }
-
-    public ReceiverHelper putExtra(String key, String value) {
-        i.putExtra(key, value);
-        return this;
-    }
-
+    /**
+     * Coloca a informação a ser enviada pelo receiver.
+     *
+     * @param key Chave informada.
+     * @param value Valor informado.
+     * @return Helper
+     */
     public ReceiverHelper putExtra(String key, Serializable value) {
         i.putExtra(key, value);
         return this;
     }
 
+    /**
+     * Envia um broadcastReceiver.
+     */
     public void sendBroadcast() {
         c.sendBroadcast(i);
     }

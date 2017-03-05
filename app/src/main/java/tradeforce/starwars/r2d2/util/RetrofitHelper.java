@@ -5,6 +5,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Helper para uso do Retrofit em comunicação com serviços web.
+ *
+ * @author Prestes, E. M.
+ * @since Março de 2017
+ *
  */
 public final class RetrofitHelper {
 
