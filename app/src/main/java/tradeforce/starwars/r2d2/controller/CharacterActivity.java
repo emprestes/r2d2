@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import org.androidannotations.annotations.AfterViews;
@@ -22,13 +21,15 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.Receiver;
 import org.androidannotations.annotations.ViewById;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import tradeforce.starwars.domain.model.Person;
 import tradeforce.starwars.r2d2.R;
 import tradeforce.starwars.r2d2.app.AppCompatActivity;
 
 import static tradeforce.starwars.r2d2.controller.Controllers.BarcodeCapture;
 import static tradeforce.starwars.r2d2.controller.Controllers.Character;
-import static tradeforce.starwars.r2d2.controller.Controllers.Maps;
 
 @EActivity(R.layout.activity_character)
 @OptionsMenu(R.menu.character)
@@ -41,7 +42,7 @@ public class CharacterActivity extends AppCompatActivity {
     ImageView characterImage;
 
     @ViewById
-    TextView height, mass, hair, skin, eyes, planet, birthYear, gender, url;
+    TextView height, mass, hair, skin, eyes, planet, birthYear, gender, captured, url;
 
     @ViewById(android.R.id.tabhost)
     FragmentTabHost tabhost;
@@ -53,8 +54,11 @@ public class CharacterActivity extends AppCompatActivity {
 
     private String origin;
 
+    private SimpleDateFormat sdf;
+
     @AfterViews
     void init() {
+         sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", getResources().getConfiguration().locale);
         Intent i = getIntent();
         int requestCode = i.getIntExtra(Character.KEY_CODE, 0);
 
@@ -95,12 +99,6 @@ public class CharacterActivity extends AppCompatActivity {
         finish();
     }
 
-    @OptionsItem
-    void myLocation() {
-        MediaPlayer.create(this, R.raw.r2d2_yeah).start();
-        startActivity(Maps.ACTION);
-    }
-
     @Receiver(actions = Character.ACTION, registerAt = Receiver.RegisterAt.OnResumeOnPause)
     void onReceive(Intent i) {
         try {
@@ -129,6 +127,7 @@ public class CharacterActivity extends AppCompatActivity {
                 planet.setText(p.getHomeworld());
                 birthYear.setText(p.getBirth_year());
                 gender.setText(p.getGender());
+                captured.setText(sdf.format(new Date(p.getCapturedInMillis())));
                 url.setText(p.getUrl());
                 characterView.setVisibility(View.VISIBLE);
 
@@ -144,12 +143,12 @@ public class CharacterActivity extends AppCompatActivity {
 
     private void configTabs(Intent i) {
         Bundle options = i.getExtras();
-        tabhost.clearAllTabs();
         tabhost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
+        tabhost.clearAllTabs();
         tabhost.addTab(tabhost.newTabSpec("films")
                 .setIndicator(getString(R.string.films)), FilmsListFragment_.class, options);
         tabhost.addTab(tabhost.newTabSpec("location")
-                .setIndicator(getString(R.string.my_location)), SupportMapFragment.class, options);
+                .setIndicator(getString(R.string.my_location)), LocationMapFragment.class, options);
         tabhost.setVisibility(View.VISIBLE);
     }
 
@@ -177,7 +176,5 @@ public class CharacterActivity extends AppCompatActivity {
                 }
                 break;
         }
-
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }

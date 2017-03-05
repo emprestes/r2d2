@@ -35,4 +35,7 @@
     <string name="title_activity_maps">Minha Localização</string>
     <string name="character_location">Meu local</string>
     <string name="my_location">Localização</string>
+    <string name="permission_problem">Sem permissão para %s</string>
+    <string name="you_were_here" formatted="false">Você estava aqui! (%s)</string>
+    <string name="character_captured">Capturado:</string>
 </resources>

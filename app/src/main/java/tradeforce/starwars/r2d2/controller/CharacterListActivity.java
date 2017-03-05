@@ -78,7 +78,6 @@ public class CharacterListActivity extends AppCompatActivity {
 
     @OptionsItem
     void qrcode() {
-        MediaPlayer.create(this, R.raw.r2d2_yeah).start();
         Bundle options = new Bundle();
 
         requestCode = BarcodeCapture.REQUEST_CODE;

@@ -30,7 +30,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:background="@android:drawable/alert_light_frame"
-            android:stretchColumns="1">
+            android:stretchColumns="1,3">
 
             <TableRow>
 
@@ -41,12 +41,9 @@
                 <TextView
                     android:id="@+id/height"
                     style="@style/TableColumnValue" />
-            </TableRow>
-
-            <TableRow>
 
                 <TextView
-                    style="@style/TableColumnLabel"
+                    style="@style/TableColumn2Label"
                     android:text="@string/character_mass" />
 
                 <TextView
@@ -62,6 +59,7 @@
 
                 <TextView
                     android:id="@+id/hair"
+                    android:layout_span="3"
                     style="@style/TableColumnValue" />
             </TableRow>
 
@@ -73,6 +71,7 @@
 
                 <TextView
                     android:id="@+id/skin"
+                    android:layout_span="3"
                     style="@style/TableColumnValue" />
             </TableRow>
 
@@ -84,6 +83,7 @@
 
                 <TextView
                     android:id="@+id/eyes"
+                    android:layout_span="3"
                     style="@style/TableColumnValue" />
             </TableRow>
 
@@ -95,6 +95,7 @@
 
                 <TextView
                     android:id="@+id/birthYear"
+                    android:layout_span="3"
                     style="@style/TableColumnValue" />
             </TableRow>
 
@@ -106,6 +107,7 @@
 
                 <TextView
                     android:id="@+id/gender"
+                    android:layout_span="3"
                     style="@style/TableColumnValue" />
             </TableRow>
 
@@ -117,6 +119,19 @@
 
                 <TextView
                     android:id="@+id/planet"
+                    android:layout_span="3"
+                    style="@style/TableColumnValue" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TableColumnLabel"
+                    android:text="@string/character_captured" />
+
+                <TextView
+                    android:id="@+id/captured"
+                    android:layout_span="3"
                     style="@style/TableColumnValue" />
             </TableRow>
 
@@ -125,7 +140,7 @@
                 <TextView
                     android:id="@+id/url"
                     style="@style/TableColumnValue.Center"
-                    android:layout_span="2" />
+                    android:layout_span="4" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
@@ -139,7 +154,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
         android:background="@android:drawable/alert_light_frame"
-        android:orientation="vertical">
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"

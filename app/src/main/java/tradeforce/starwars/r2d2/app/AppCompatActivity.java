@@ -40,4 +40,8 @@ public abstract class AppCompatActivity extends android.support.v7.app.AppCompat
     protected void showMessageShort(int id) {
         Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
     }
+
+    protected void showMessageShort(int id, Object... arg) {
+        Toast.makeText(this, getString(id, arg), Toast.LENGTH_SHORT).show();
+    }
 }

@@ -2,9 +2,15 @@ package tradeforce.starwars.r2d2.controller;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import org.androidannotations.annotations.EIntentService;
+import org.androidannotations.annotations.SystemService;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -12,6 +18,7 @@ import tradeforce.starwars.domain.model.Film;
 import tradeforce.starwars.domain.model.Person;
 import tradeforce.starwars.domain.model.Planet;
 import tradeforce.starwars.r2d2.R;
+import tradeforce.starwars.r2d2.location.LocationAdapter;
 import tradeforce.starwars.r2d2.repository.sqlite.SQLiteHelper;
 import tradeforce.starwars.r2d2.util.ReceiverHelper;
 import tradeforce.starwars.r2d2.util.RetrofitHelper;
@@ -19,10 +26,17 @@ import tradeforce.starwars.r2d2.ws.CharacterEndpoint;
 import tradeforce.starwars.r2d2.ws.FilmEndpoint;
 import tradeforce.starwars.r2d2.ws.PlanetEndpoint;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
 import static tradeforce.starwars.r2d2.controller.Controllers.Character;
 
 @EIntentService
 public class SaveCharacterService extends IntentService {
+
+    private static final int MIN_TIME = 1000;
+    private static final int MIN_DISTANCE = 0;
 
     private SQLiteHelper.WritableDAO<Person> personDAO;
     private SQLiteHelper.WritableDAO<Film> filmDAO;
@@ -31,12 +45,45 @@ public class SaveCharacterService extends IntentService {
         super(SaveCharacterService.class.getSimpleName());
     }
 
+    @SystemService
+    LocationManager locationManager;
+    private Location location;
+    private LocationListener locationListener = new LocationAdapter() {
+        @Override
+        public void onLocationChanged(Location l) {
+            location = l;
+        }
+    };
+    private String provider;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         personDAO = SQLiteHelper.getDAOWritable(this, Person.class);
         filmDAO = SQLiteHelper.getDAOWritable(this, Film.class);
+        provider = locationManager.getBestProvider(new Criteria(), Boolean.FALSE);
+
+        boolean isNotFine;
+        boolean isNotCoarse;
+
+        isNotFine = ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED;
+        isNotCoarse = ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED;
+
+        if (isNotFine && isNotCoarse)
+            return;
+
+        locationManager.requestLocationUpdates(provider, MIN_TIME, MIN_DISTANCE, locationListener);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (locationManager != null)
+            locationManager.removeUpdates(locationListener);
+
+        filmDAO.close();
+        personDAO.close();
+        super.onDestroy();
     }
 
     @Override
@@ -45,14 +92,19 @@ public class SaveCharacterService extends IntentService {
         Call<Person> c;
         Response<Person> r;
         ReceiverHelper receiver;
+        Location l;
         String url;
         Person p;
         Long id;
 
+        endpoint = RetrofitHelper.getServiceStarWars(CharacterEndpoint.class);
         receiver = ReceiverHelper.prepare(this, Character.ACTION);
 
         try {
-            endpoint = RetrofitHelper.getServiceStarWars(CharacterEndpoint.class);
+            if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
+                return;
+            }
             url = intent.getStringExtra(Character.KEY_URL);
             id = SQLiteHelper.recoveryId(url);
             c = endpoint.get(id);
@@ -64,6 +116,11 @@ public class SaveCharacterService extends IntentService {
 
                 p = r.body();
                 p.setId(id);
+                location = location == null ? locationManager.getLastKnownLocation(provider) : location;
+                p.setLatitude(location.getLatitude());
+                p.setLongitude(location.getLongitude());
+                p.setCapturedInMillis(System.currentTimeMillis());
+
                 planetEndpoint = RetrofitHelper.getServiceStarWars(PlanetEndpoint.class);
                 id = SQLiteHelper.recoveryId(p.getHomeworld());
                 cp = planetEndpoint.get(id);
@@ -82,6 +139,7 @@ public class SaveCharacterService extends IntentService {
                     Response<Film> rf;
                     Film f;
 
+                    filmDAO.delete(Film._ID_PERSON, p.getId());
                     filmEndpoint = RetrofitHelper.getServiceStarWars(FilmEndpoint.class);
                     for (String i : p.getFilms()) {
                         id = SQLiteHelper.recoveryId(i);
@@ -90,7 +148,7 @@ public class SaveCharacterService extends IntentService {
 
                         if (rf.isSuccessful()) {
                             f = rf.body();
-                            f.setId(id);
+                            f.setIdFilm(id);
                             f.setIdPerson(p.getId());
                             filmDAO.save(f);
                             Log.d("swapi", getString(R.string.saved, f));
@@ -114,5 +172,19 @@ public class SaveCharacterService extends IntentService {
         } finally {
             receiver.sendBroadcast();
         }
+    }
+
+    private void requestLocationUpdates() {
+        int granted = PERMISSION_GRANTED;;
+        String afl = ACCESS_FINE_LOCATION;
+        String acl = ACCESS_COARSE_LOCATION;
+
+        boolean hasNoAccess = ActivityCompat.checkSelfPermission(this, afl) != granted;
+        hasNoAccess = hasNoAccess && ActivityCompat.checkSelfPermission(this, acl) != granted;
+        if (hasNoAccess)
+            return;
+
+        provider = locationManager.getBestProvider(new Criteria(), Boolean.FALSE);
+        locationManager.requestLocationUpdates(provider, MIN_TIME, MIN_DISTANCE, locationListener);
     }
 }

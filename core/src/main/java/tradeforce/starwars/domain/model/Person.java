@@ -2,6 +2,7 @@ package tradeforce.starwars.domain.model;
 
 import com.google.common.base.MoreObjects;
 
+import java.util.Date;
 import java.util.List;
 
 import tradeforce.starwars.repository.orm.Column;
@@ -60,6 +61,15 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
 
     @Column(name = "dt_edicao", nullable = false)
     private String edited;
+
+    @Column(name = "vl_latitude", nullable = false)
+    private Double latitude;
+
+    @Column(name = "vl_longitude", nullable = false)
+    private Double longitude;
+
+    @Column(name = "dt_hora", nullable = false)
+    private Long capturedInMillis;
 
     @Override
     public Long getId() {
@@ -211,6 +221,34 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
         return this;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Long getCapturedInMillis() {
+        return capturedInMillis;
+    }
+
+    public Date getCapturedDate() {
+        return new Date(capturedInMillis);
+    }
+
+    public void setCapturedInMillis(Long capturedInMillis) {
+        this.capturedInMillis = capturedInMillis;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -314,6 +352,9 @@ public class Person implements tradeforce.starwars.repository.Entity<Long>, Comp
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("name", name)
+                .add("latitude", latitude)
+                .add("longitude", longitude)
+                .add("capturedInMillis", capturedInMillis)
                 .add("height", height)
                 .add("mass", mass)
                 .add("hair_color", hair_color)

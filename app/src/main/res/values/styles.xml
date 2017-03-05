@@ -21,11 +21,15 @@
     </style>
 
     <style name="TableColumnLabel">
-        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_width">75dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:gravity">end</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TableColumn2Label" parent="TableColumnLabel">
+        <item name="android:layout_width">55dp</item>
     </style>
 
     <style name="TableColumnValue">

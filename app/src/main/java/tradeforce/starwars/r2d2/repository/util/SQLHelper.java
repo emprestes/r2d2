@@ -57,6 +57,9 @@ public final class SQLHelper {
                             (Short.class.equals(type) || short.class.equals(type)) ||
                             (Byte.class.equals(type) || byte.class.equals(type)))) {
                         sql.append(" INTEGER");
+                    } else if (Double.class.equals(type) || double.class.equals(type) ||
+                            (Float.class.equals(type) || float.class.equals(type))) {
+                        sql.append(" REAL");
                     } else if (String.class.equals(type)) {
                         sql.append(" VARCHAR(").append(c.length()).append(')');
                     }
@@ -107,6 +110,8 @@ public final class SQLHelper {
                     if (value != null) {
                         if (value instanceof Long) {
                             cv.put(key, (Long) value);
+                        } else if (value instanceof Double) {
+                            cv.put(key, (Double) value);
                         } else if (value instanceof String) {
                             cv.put(key, value.toString());
                         }
@@ -154,6 +159,9 @@ public final class SQLHelper {
                                     break;
                                 case Cursor.FIELD_TYPE_INTEGER:
                                     f.set(model, c.getLong(index));
+                                    break;
+                                case Cursor.FIELD_TYPE_FLOAT:
+                                    f.set(model, c.getDouble(index));
                                     break;
                             }
                         }
