@@ -13,11 +13,15 @@ import tradeforce.starwars.repository.orm.Table;
 @Table("filme")
 public class Film implements tradeforce.starwars.repository.Entity<Long>, Comparable<Film> {
 
+    public static final String _ID_FILM = "id_filme";
     public static final String _ID_PERSON = "id_personagem";
 
-    @Id(autoincrement = false)
+    @Id
     @Column(name = _ID, nullable = false)
     private Long id;
+
+    @Column(name = _ID_FILM, nullable = false)
+    private Long idFilm;
 
     @Column(name = _ID_PERSON, nullable = false)
     private Long idPerson;
@@ -68,6 +72,14 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
     @Override
     public boolean hasId() {
         return getId() != null;
+    }
+
+    public Long getIdFilm() {
+        return idFilm;
+    }
+
+    public void setIdFilm(Long idFilm) {
+        this.idFilm = idFilm;
     }
 
     public Long getIdPerson() {
@@ -211,6 +223,11 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
 
         Film film = (Film) o;
 
+        if (getId() != null ? !getId().equals(film.getId()) : film.getId() != null) return false;
+        if (getIdFilm() != null ? !getIdFilm().equals(film.getIdFilm()) : film.getIdFilm() != null)
+            return false;
+        if (getIdPerson() != null ? !getIdPerson().equals(film.getIdPerson()) : film.getIdPerson() != null)
+            return false;
         if (getTitle() != null ? !getTitle().equals(film.getTitle()) : film.getTitle() != null)
             return false;
         if (getEpisode_id() != null ? !getEpisode_id().equals(film.getEpisode_id()) : film.getEpisode_id() != null)
@@ -243,7 +260,10 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
 
     @Override
     public int hashCode() {
-        int result = getTitle() != null ? getTitle().hashCode() : 0;
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getIdFilm() != null ? getIdFilm().hashCode() : 0);
+        result = 31 * result + (getIdPerson() != null ? getIdPerson().hashCode() : 0);
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + (getEpisode_id() != null ? getEpisode_id().hashCode() : 0);
         result = 31 * result + (getOpening_crawl() != null ? getOpening_crawl().hashCode() : 0);
         result = 31 * result + (getDirector() != null ? getDirector().hashCode() : 0);
@@ -267,6 +287,9 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
 
     @Override
     protected void finalize() throws Throwable {
+        id = null;
+        idFilm = null;
+        idPerson = null;
         title = null;
         episode_id = null;
         opening_crawl = null;
@@ -289,6 +312,7 @@ public class Film implements tradeforce.starwars.repository.Entity<Long>, Compar
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
+                .add("idFilm", idFilm)
                 .add("idPerson", idPerson)
                 .add("title", title)
                 .add("episode_id", episode_id)

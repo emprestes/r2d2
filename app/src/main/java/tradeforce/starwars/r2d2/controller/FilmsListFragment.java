@@ -20,18 +20,18 @@ import tradeforce.starwars.r2d2.view.FilmAdapter;
 public class FilmsListFragment extends ListFragment {
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
 
-        Intent i;
         SQLiteHelper.ReadableDAO<Film> filmDAO;
         ArrayList<Film> films;
+        Bundle b;
 
-        i = getActivity().getIntent();
+        b = getArguments();
         filmDAO = SQLiteHelper.getDAOReadable(getActivity(), Film.class);
         try {
             films = new ArrayList<>();
-            Person p = (Person) i.getSerializableExtra(Controllers.Character.KEY_MODEL);
+            Person p = (Person) b.getSerializable(Controllers.Character.KEY_MODEL);
             if (p != null) {
                 films.addAll(filmDAO.findById(Film._ID_PERSON, p.getId()));
                 Collections.sort(films);
