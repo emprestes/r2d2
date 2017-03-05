@@ -1,10 +1,13 @@
 package tradeforce.starwars.r2d2.controller;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.VideoView;
@@ -17,6 +20,9 @@ import org.androidannotations.annotations.ViewById;
 
 import tradeforce.starwars.r2d2.R;
 import tradeforce.starwars.r2d2.app.AppCompatActivity;
+import tradeforce.starwars.r2d2.util.PermissionHelper;
+
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -41,6 +47,7 @@ public class SplashActivity extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 400;
+    private static final int CHECK_PERMISSIONS = 900;
     private final Handler mHideHandler = new Handler();
     @ViewById(R.id.fullscreen_content)
     VideoView mContentView;
@@ -82,7 +89,32 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
-        initIntro();
+        PermissionHelper.check(this, CHECK_PERMISSIONS, c -> initIntro(),
+                Manifest.permission.CAMERA,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case CHECK_PERMISSIONS:
+                String p;
+                int index;
+                for (int i = 0; i < grantResults.length; i++)
+                    if (grantResults[i] != PERMISSION_GRANTED) {
+                        p = permissions[i];
+                        index = p.lastIndexOf('.') + 1;
+                        showMessageShort(R.string.permission_problem, p.substring(index));
+                        finish();
+                        return;
+                    }
+
+                initIntro();
+                break;
+        }
     }
 
     @Click(R.id.enter)
