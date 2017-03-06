@@ -8,4 +8,4 @@
 
 ![R2D2](img/scream_02.png)
 
-Conheça mais do projeto em #1
+Conheça mais do projeto em [#1](https://github.com/emprestes/r2d2/issues/1)
